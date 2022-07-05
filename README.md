@@ -5,7 +5,8 @@
 
 # 1. Git 소스 체크아웃
 프로젝트 소스를 저장할 폴더에서 커맨드 창을 열고 아래 명령어를 쳐주세요.
-> #TODO
+> git init
+> git clone https://github.com/le-cl/fe-cl.git
 
 # 2. 패키지 설치
 VS Code를 실행한 후 체크아웃 받은 소스의 루트 폴더를 엽니다.
