@@ -2,7 +2,7 @@ import React from 'react';
 
 function LoginForm({ children }) {
   return (
-    <form className="mt-8 space-y-6" action="#" method="POST">
+    <form className="mt-8 space-y-6" action="question">
       <input type="hidden" name="remember" defaultValue="true" />
       {children}
     </form>

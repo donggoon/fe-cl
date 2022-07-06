@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { LockClosedIcon } from '@heroicons/react/solid';
 
 import Edit from '../atoms/Edit';
@@ -10,7 +9,8 @@ import Button from '../atoms/Button';
 import Groupbox from '../atoms/Groupbox';
 import LabelCheck from '../molecules/LabelCheck';
 
-function Login() {
+// eslint-disable-next-line no-unused-vars
+function Login({ history }) {
   return (
     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
@@ -27,7 +27,11 @@ function Login() {
             Or <Anchor href="#">start your 14-day free trial</Anchor>
           </p>
         </div>
-        <LoginForm>
+        <LoginForm
+          onSubmit={() => {
+            console.log('submit');
+          }}
+        >
           <Groupbox
             styleoption={{
               spaceBetween: { axis: 'y', weight: 4 },
@@ -65,17 +69,15 @@ function Login() {
             </div>
           </LoginFooter>
 
-          <Link to="/question">
-            <Button>
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <LockClosedIcon
-                  className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                  aria-hidden="true"
-                />
-              </span>
-              Sign in
-            </Button>
-          </Link>
+          <Button>
+            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+              <LockClosedIcon
+                className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                aria-hidden="true"
+              />
+            </span>
+            Sign in
+          </Button>
         </LoginForm>
       </div>
     </div>
