@@ -6,44 +6,38 @@ import QuestionForm from '../organisms/forms/QuestionForm';
 import LabelTextRadio from '../molecules/LabelTextRadio';
 import Groupbox from '../atoms/Groupbox';
 
-function Question({ history }) {
-  const question = {
+function QuestionImage({ history }) {
+  const questionImage = {
     id: 1,
-    title: `Amazon DynamoDB is used by a corporation to manage and track orders.
-    The order date is used to split the DynamoDB table. During a sales
-    event, the company receives a large spike in orders, forcing DynamoDB
-    writes to choke, and the used throughput is considerably lower than the
-    permitted throughput. How can this issue be rectified with MINIMAL
-    expenses, according to AWS best practices?`,
-    type: 'multi',
+    title: `Which of the following is the customer's obligation under the shared responsibility model?`,
+    type: '',
     options: [
       {
         id: 1,
-        name: 'comments',
-        label: 'Comments',
-        text: 'Get notified when someones posts a comment on a posting.',
+        name: 'A',
+        label: 'A',
+        text: 'Ensuring that disk drives are wiped after use.',
       },
       {
         id: 2,
-        name: 'offers',
-        label: 'Offers',
-        text: 'Get notified when a candidate accepts or rejects an offer.',
+        name: 'B',
+        label: 'B',
+        text: 'Ensuring that firmware is updated on hardware devices.',
       },
       {
         id: 3,
-        name: 'offers',
-        label: 'Offers',
-        text: 'Get notified when a candidate accepts or rejects an offer.',
+        name: 'C',
+        label: 'C',
+        text: 'Ensuring that data is encrypted at rest.',
       },
       {
         id: 4,
-        name: 'offers',
-        label: 'Offers',
-        text: 'Get notified when a candidate accepts or rejects an offer.',
+        name: 'D',
+        label: 'D',
+        text: 'Ensuring that network cables are category six or higher.',
       },
     ],
   };
-
   const getOptions = (type, options) => {
     if (type === 'multi') {
       return options.map(option => {
@@ -69,7 +63,14 @@ function Question({ history }) {
 
   return (
     <QuestionForm>
-      <QuestionTitle id={question.id}>{question.title}</QuestionTitle>
+      <QuestionTitle id={questionImage.id}>{questionImage.title}</QuestionTitle>
+      <div>
+        <img
+          className="relative h-72 w-auto"
+          src="./img/cat.png"
+          alt="Workflow"
+        />
+      </div>
       <Groupbox
         styleoption={{
           spaceBetween: { negative: true },
@@ -77,7 +78,7 @@ function Question({ history }) {
           boxShadow: 'sm',
         }}
       >
-        {getOptions(question.type, question.options)}
+        {getOptions(questionImage.type, questionImage.options)}
       </Groupbox>
       <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
         <button
@@ -90,13 +91,13 @@ function Question({ history }) {
           Previous
         </button>
         <button
-          type="submit"
+          type="button"
           className="mr-1 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           Next
         </button>
         <button
-          type="button"
+          type="submit"
           className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           Save
@@ -106,4 +107,4 @@ function Question({ history }) {
   );
 }
 
-export default Question;
+export default QuestionImage;
