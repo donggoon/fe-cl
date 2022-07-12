@@ -22,3 +22,6 @@ VS Code 상단 메뉴에 Terminal > New Terminal 을 클릭하여 터미널을 �
 # 4. VSCODE 확장팩 설치
 > ESLint
 > prettier
+
+# 5. css 참고
+> tailwind
