@@ -1,6 +1,10 @@
-export const getSpaceBetween = (
-  spaceBetween = { negative: false, axis: 'x', weight: 'px' },
-) => {
+import { isEmpty } from './commonUtil';
+
+// spaceBetween = { negative: false, axis: 'x', weight: 'px' }
+export const getSpaceBetween = spaceBetween => {
+  if (isEmpty(spaceBetween)) {
+    return '';
+  }
   let className = '';
   if (spaceBetween.negative) {
     className += '-';
@@ -36,51 +40,57 @@ export const getBorderRadius = borderRadius => {
   return 'rounded-md';
 };
 
-export const getAlignItems = (alignItems = 'start') => {
-  switch (alignItems) {
-    case 'start':
-      return 'items-start';
-    case 'end':
-      return 'items=end';
-    case 'center':
-      return 'items-center';
-    case 'baseline':
-      return 'items-baseline';
-    case 'stretch':
-      return 'items-stretch';
-    default:
-      return 'items-start';
+export const getAlignItems = alignItems => {
+  if (isEmpty(alignItems)) {
+    return '';
   }
+  const candidates = ['start', 'end', 'center', 'baseline', 'stretch'];
+  if (candidates.includes(alignItems)) {
+    return `items-${alignItems}`;
+  }
+  return 'items-start';
 };
 
-export const getHeight = (height = 'px') => {
+export const getHeight = height => {
+  if (isEmpty(height)) return '';
   return `h-${height}`;
 };
 
-export const getBoxShadow = (boxShadow = 'none') => {
-  switch (boxShadow) {
-    case 'sm':
-      return 'shadow-sm';
-    case 'md':
-      return 'shadow-md';
-    case 'lg':
-      return 'shadow-lg';
-    case 'xl':
-      return 'shadow-xl';
-    case '2xl':
-      return 'shadow-2xl';
-    case 'inner':
-      return 'shadow-inner';
-    case 'none':
-      return 'shadow-none';
-    default:
-      return 'shadow';
+export const getBoxShadow = boxShadow => {
+  if (isEmpty(boxShadow)) {
+    return '';
   }
+  const candidates = ['sm', 'md', 'lg', 'xl', '2xl', 'inner', 'none'];
+  if (candidates.includes(boxShadow)) {
+    return `shadow-${boxShadow}`;
+  }
+  return 'shadow-none';
 };
 
 export const getMarginTop = marginTop => {
-  if (marginTop) {
-    return `mt-${marginTop}`;
+  if (isEmpty(marginTop)) {
+    return '';
   }
-  return '';
+  return `mt-${marginTop}`;
+};
+
+export const getPaddingTop = paddingTop => {
+  if (isEmpty(paddingTop)) {
+    return '';
+  }
+  return `pt-${paddingTop}`;
+};
+
+export const getPaddingX = paddingX => {
+  if (isEmpty(paddingX)) {
+    return '';
+  }
+  return `px-${paddingX}`;
+};
+
+export const getPaddingY = paddingY => {
+  if (isEmpty(paddingY)) {
+    return '';
+  }
+  return `py-${paddingY}`;
 };

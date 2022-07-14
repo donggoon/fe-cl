@@ -72,7 +72,7 @@ function QuestionImage({ history }) {
         />
       </div>
       <Groupbox
-        styleoption={{
+        styleOption={{
           spaceBetween: { negative: true },
           borderRadius: 'md',
           boxShadow: 'sm',

@@ -4,9 +4,9 @@ import Flexbox from '../atoms/Flexbox';
 
 function LabelCheck({ id, name, label, children }) {
   return (
-    <Flexbox styleoption={{ itemAlign: 'center' }}>
+    <Flexbox styleoption={{ itemAlign: 'center', paddingTop: 6 }}>
       <Check id={id} name={name} />
-      <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+      <label htmlFor="remember-me" className="ml-3 text-sm text-gray-600">
         {label || children}
       </label>
     </Flexbox>

@@ -1,13 +1,20 @@
 import React from 'react';
 
-import { getAlignItems, getHeight } from '../../functions/commonStyle';
+import {
+  getAlignItems,
+  getHeight,
+  getPaddingY,
+} from '../../functions/commonStyle';
 
-function Flexbox({ styleoption = { alignItems: 'start' }, children }) {
+function Flexbox({
+  styleOption = { alignItems: 'start', paddingY: 3 },
+  children,
+}) {
   return (
     <div
-      className={`flex ${getAlignItems(styleoption.alignItems)} ${getHeight(
-        styleoption.height,
-      )}`}
+      className={`flex ${getAlignItems(styleOption.alignItems)} ${getHeight(
+        styleOption.height,
+      )} ${getPaddingY(styleOption.paddingY)}`}
     >
       {children}
     </div>

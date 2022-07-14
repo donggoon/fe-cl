@@ -5,23 +5,23 @@ import {
   getBorderRadius,
   getBoxShadow,
   getMarginTop,
+  getPaddingTop,
 } from '../../functions/commonStyle';
 
-function Groupbox({ styleoption, children }) {
+function Groupbox({ styleOption, children }) {
   return (
     <div
       className={`${getSpaceBetween(
-        styleoption.spaceBetween,
-      )} ${getBorderRadius(styleoption.borderRadius)} ${getBoxShadow(
-        styleoption.boxShadow,
-      )} ${getMarginTop(styleoption.marginTop)}`}
+        styleOption.spaceBetween,
+      )} ${getBorderRadius(styleOption.borderRadius)} ${getBoxShadow(
+        styleOption.boxShadow,
+      )} ${getMarginTop(styleOption.marginTop)} ${getPaddingTop(
+        styleOption.paddingTop,
+      )}`}
     >
       {children}
     </div>
   );
 }
-
-// -space-y-px rounded-md shadow-sm
-// mt-4 space-y-4
 
 export default Groupbox;

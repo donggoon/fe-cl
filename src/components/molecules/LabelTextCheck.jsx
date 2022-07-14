@@ -6,7 +6,7 @@ import Flexbox from '../atoms/Flexbox';
 function LabelTextCheck({ id, name, label, text, children }) {
   return (
     <Flexbox>
-      <Flexbox styleoption={{ height: 5, itemAlign: 'center' }}>
+      <Flexbox styleOption={{ height: 5, itemAlign: 'center' }}>
         <Check id={id} name={name} />
       </Flexbox>
       <div className="ml-3 text-sm">

@@ -33,7 +33,7 @@ function Login({ history }) {
           }}
         >
           <Groupbox
-            styleoption={{
+            styleOption={{
               spaceBetween: { axis: 'y', weight: 4 },
               borderRadius: 'none',
               marginTop: '4',
@@ -46,7 +46,7 @@ function Login({ history }) {
               autoComplete="email"
               required
               placeholder="Email address"
-              styleoption={{ rounded: 'top-only' }}
+              styleOption={{ rounded: 'top-only' }}
             />
             <Edit
               id="password"
@@ -55,7 +55,7 @@ function Login({ history }) {
               autoComplete="current-password"
               required
               placeholder="Password"
-              styleoption={{ rounded: 'bottom-only' }}
+              styleOption={{ rounded: 'bottom-only' }}
             />
           </Groupbox>
           <LoginFooter>

@@ -9,7 +9,7 @@ function Edit({
   autoComplete,
   required,
   placeholder,
-  styleoption,
+  styleOption,
 }) {
   return (
     <div>
@@ -23,7 +23,7 @@ function Edit({
         autoComplete={autoComplete}
         required={required}
         className={`relative block w-full appearance-none ${getBorderRadius(
-          styleoption.borderRadius,
+          styleOption.borderRadius,
         )} border border-gray-300 px-3 py-2 text-gray-900 placeholder:text-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm`}
         placeholder={placeholder}
       />
