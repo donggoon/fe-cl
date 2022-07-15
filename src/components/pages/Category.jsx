@@ -8,7 +8,7 @@ function Category() {
       imageSrc:
         'https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Solutions-Architect-Associate_badge.3419559c682629072f1eb968d59dea0741772c0f.png',
       imageAlt: 'AWS Certified Solutions Architect - Associate',
-      href: '/preview',
+      href: '/preview/aws',
     },
     {
       name: 'ADsP',
@@ -16,14 +16,14 @@ function Category() {
       imageSrc:
         'https://velog.velcdn.com/images/zinu/post/8626b851-5212-48d9-80c5-2cd36c662089/image.jpg',
       imageAlt: '국가공인 데이터분석 준전문가',
-      href: '/preview',
+      href: '/preview/adsp',
     },
     {
       name: '준비중',
       description: '준비중',
       imageSrc: '',
       imageAlt: '준비중입니다.',
-      href: '#',
+      href: '/preview',
     },
   ];
 

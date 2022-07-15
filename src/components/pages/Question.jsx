@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import QuestionTitle from '../atoms/QuestionTitle';
+import QuestionImage from '../atoms/QuestionImage';
 import LabelCheck from '../molecules/LabelCheck';
 import QuestionForm from '../organisms/forms/QuestionForm';
 import LabelTextRadio from '../molecules/LabelTextRadio';
@@ -66,6 +67,7 @@ function Question() {
   return (
     <QuestionForm>
       <QuestionTitle id={question.id}>{question.title}</QuestionTitle>
+      <QuestionImage /* if(existImage) 분기 필요 */ />
       <Groupbox
         styleOption={{
           spaceBetween: { negative: false, axis: 'y', weight: 4 },
