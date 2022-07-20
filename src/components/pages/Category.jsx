@@ -23,7 +23,7 @@ function Category() {
   ]);
 
   const injectUrl = data => {
-    data.map(row => {
+    return data.map(row => {
       if (row.id === 3) {
         return {
           ...row,
@@ -45,13 +45,12 @@ function Category() {
       .get('http://3.37.139.180:9002/api/q/category')
       .then(data => {
         console.log(data);
-        setCategories(injectUrl(data));
+        setCategories(injectUrl(data.data));
       })
       .catch(err => {
         console.log(err);
-        // CORS Error
       });
-  });
+  }, []);
   // const callouts = [
   //   {
   //     name: 'AWS',
