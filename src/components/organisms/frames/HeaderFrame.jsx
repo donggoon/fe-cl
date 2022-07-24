@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function HeaderFrame() {
   return (
     <div className="supports-backdrop-blur:bg-white/60 sticky top-0 z-40 w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 dark:border-slate-50/[0.06] dark:bg-transparent lg:z-50 lg:border-b lg:border-slate-900/10">
-      <div className="max-w-8xl mx-auto">
+      <div className="mx-auto max-w-8xl">
         <div className="mx-4 border-b border-slate-900/10 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-8">
           <div className="relative flex items-center">
             <a
@@ -18,30 +19,21 @@ function HeaderFrame() {
             <div className="relative ml-auto hidden items-center lg:flex">
               <nav className="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
                 <ul className="flex space-x-8">
-                  <li>
-                    <a
-                      className="hover:text-sky-500 dark:hover:text-sky-400"
-                      href="/category"
-                    >
+                  <Link to="/category">
+                    <li className="hover:text-sky-500 dark:hover:text-sky-400">
                       Category
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/question"
-                      className="hover:text-sky-500 dark:hover:text-sky-400"
-                    >
+                    </li>
+                  </Link>
+                  <Link to="/question">
+                    <li className="hover:text-sky-500 dark:hover:text-sky-400">
                       Question
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="hover:text-sky-500 dark:hover:text-sky-400"
-                      href="/admin"
-                    >
+                    </li>
+                  </Link>
+                  <Link to="/admin">
+                    <li className="hover:text-sky-500 dark:hover:text-sky-400">
                       Admin
-                    </a>
-                  </li>
+                    </li>
+                  </Link>
                 </ul>
               </nav>
               <div className="ml-6 flex items-center border-l border-slate-200 pl-6 dark:border-slate-800">

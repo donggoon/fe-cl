@@ -11,7 +11,6 @@ function App() {
   return (
     <Router>
       <Route exact path="/" component={Main} />
-      <Route path="/main" component={Main} />
       <Route path="/login" component={Login} />
       <Route path="/ready" component={Ready} />
       <Route path="/category" component={Category} />

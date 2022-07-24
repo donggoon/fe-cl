@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Check from '../atoms/Check';
+import Check from '../molecules/Check';
 
 function CheckGroup({ options }) {
   return (

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body > #root > div {
+body>#root {
   height: 100vh;
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  overflow: hidden;
 }
