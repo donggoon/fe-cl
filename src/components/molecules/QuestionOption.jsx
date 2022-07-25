@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import CheckIcon from '../atoms/CheckIcon';
 
 // function Check({ id, name, text, checked }) {
-function Check({ option }) {
+function QuestionOption({ option }) {
   const [checked, setChecked] = useState(option.checked);
 
   const handleClick = () => {
@@ -27,4 +27,4 @@ function Check({ option }) {
   );
 }
 
-export default Check;
+export default QuestionOption;

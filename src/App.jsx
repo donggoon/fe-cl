@@ -15,7 +15,7 @@ function App() {
       <Route path="/ready" component={Ready} />
       <Route path="/category" component={Category} />
       <Route path="/preview/:name" component={Preview} />
-      <Route path="/q" component={Question} />
+      <Route path="/question" component={Question} />
     </Router>
   );
 }

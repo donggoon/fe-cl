@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Check from '../molecules/Check';
+import QuestionOption from '../molecules/QuestionOption';
 
-function CheckGroup({ options, children }) {
+function QuestionOptionGroup({ options, children }) {
   const getOptions = _options => {
     return _options.map(option => {
-      return <Check option={option} />;
+      return <QuestionOption option={option} />;
     });
   };
 
@@ -21,4 +21,4 @@ function CheckGroup({ options, children }) {
   );
 }
 
-export default CheckGroup;
+export default QuestionOptionGroup;

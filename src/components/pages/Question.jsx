@@ -1,16 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import QuestionTitle from '../atoms/QuestionTitle';
-// import QuestionImage from '../atoms/QuestionImage';
-// import LabelCheck from '../molecules/LabelCheck';
-import QuestionForm from '../organisms/forms/QuestionForm';
-// import LabelTextRadio from '../molecules/LabelTextRadio';
-// import Groupbox from '../atoms/Groupbox';
-import CheckGroup from '../organisms/CheckGroup';
-import Progress from '../molecules/Progress';
+// eslint-disable-next-line no-unused-vars
+import QuestionOption from '../molecules/QuestionOption';
+import QuestionOptionGroup from '../organisms/QuestionOptionGroup';
+// import Check from '../molecules/Check';
+// import CheckGroup from '../organisms/CheckGroup';
 
-function Question() {
-  const question = {
+function Question({ id, history }) {
+  const [question, setQuestion] = useState({
     id: 9,
     text: "Returning consumers may log in to see personalized web pages on an e-commerce site. The process is shown below:\r\n\r\nOn EC2 instances, an application is executing. The database that records user accounts and preferences is hosted on Amazon RDS. While waiting for the login stage to finish, the website freezes or loads slowly. The remainder of the site's components are properly optimized.",
     image_name: '9.png',
@@ -20,7 +19,7 @@ function Question() {
     use_yn: 'Y',
     type: 'S',
     category_id: 3,
-  };
+  });
   // eslint-disable-next-line no-unused-vars
   const [options, setOptions] = useState([
     {
@@ -31,7 +30,7 @@ function Question() {
       correct_yn: 'Y',
       question_id: 9,
       del_yn: 'N',
-      checked: true,
+      checked: false,
     },
     {
       id: 18,
@@ -65,33 +64,87 @@ function Question() {
     },
   ]);
 
-  // const getOptions = (type, options) => {
-  //   if (type === 'multi') {
-  //     return options.map(option => {
-  //       return (
-  //         <LabelCheck id={option.id} name={option.name}>
-  //           {option.text}
-  //         </LabelCheck>
-  //       );
-  //     });
-  //   }
-  //   return options.map(option => {
-  //     return (
-  //       <LabelTextRadio id={option.id} name={option.name} label={option.label}>
-  //         {option.text}
-  //       </LabelTextRadio>
-  //     );
-  //   });
-  // };
+  useEffect(() => {
+    axios
+      .get(`http://3.37.139.180:9002/api/q/${id}`)
+      .then(data => {
+        console.log(data);
+        setQuestion(data.data.question);
+        setOptions(data.data.options);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  const getAnswerSet = entries => {
+    let answerSet = '';
+    // eslint-disable-next-line no-restricted-syntax
+    for (const [key, value] of entries) {
+      if (value === 'true') {
+        answerSet += key;
+      }
+    }
+
+    return answerSet;
+  };
+
+  const handleSubmit = event => {
+    const formData = new FormData(event.target);
+    event.preventDefault();
+
+    axios
+      .post('http://3.37.139.180:9002/api/q/move', {
+        id: question.id,
+        question_id: question.id,
+        progress_set: '',
+        answer_set: getAnswerSet(formData.entries()),
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   return (
-    <QuestionForm>
-      <Progress />
-      <QuestionTitle id={question.id}>{question.text}</QuestionTitle>
-      {/* {question.image ? <QuestionImage /> : null} */}
-      {question.image ? <image src={question.image} /> : null}
-      <CheckGroup options={options} />
-    </QuestionForm>
+    <form onSubmit={handleSubmit}>
+      <div className="overflow-hidden sm:rounded-md">
+        <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+          <QuestionTitle id={question.id}>{question.text}</QuestionTitle>
+          {question.image ? (
+            <img
+              src={`data:image/png;base64,${question.image}`}
+              alt="no images"
+            />
+          ) : null}
+          <QuestionOptionGroup options={options} />
+          {/* <QuestionOptionGroup>
+              {options.map(option => {
+                return <QuestionOption option={option} />;
+              })}
+            </QuestionOptionGroup> */}
+        </div>
+        <div className="px-4 py-3 text-right sm:px-6">
+          <button
+            type="button"
+            onClick={() => {
+              history.goBack();
+            }}
+            className="mr-1 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Previous
+          </button>
+          <button
+            type="submit"
+            className="mr-1 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </form>
   );
 }
 
