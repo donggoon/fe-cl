@@ -1,8 +1,11 @@
 import React from 'react';
 // import { BrowserRouter as Router } from 'react-router-dom';
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+// import { Route, Routes, useMatch, Outlet } from 'react-router-dom';
+// import Category from '../../pages/Category';
+// import Question from '../../pages/Question';
 
-function MainFrame({ children }) {
+function MainFrame() {
   return (
     <div className="mx-auto max-w-8xl px-4 sm:px-6 md:px-8">
       <div className="mx-auto max-w-3xl pt-10 xl:ml-0 xl:mr-[15.5rem] xl:max-w-none xl:pr-16">
@@ -29,7 +32,7 @@ function MainFrame({ children }) {
           id="content-wrapper"
           className="prose prose-slate relative z-20 mt-8"
         >
-          {children}
+          <Outlet />
         </div>
         <footer className="mt-12 text-sm leading-6">
           <div className="justify-between border-t border-slate-200 pt-10 pb-28 text-slate-500 dark:border-slate-200/5 sm:flex">
@@ -44,7 +47,6 @@ function MainFrame({ children }) {
             </a>
           </div>
         </footer>
-
         <div className="fixed top-[3.8125rem] bottom-0 right-[max(0px,calc(50%-45rem))] z-20 hidden w-[19.5rem] overflow-y-auto py-10 px-8 xl:block">
           <h5 className="mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">
             Category Name

@@ -19,17 +19,17 @@ function HeaderFrame() {
             <div className="relative ml-auto hidden items-center lg:flex">
               <nav className="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
                 <ul className="flex space-x-8">
-                  <Link to="/category">
+                  <Link to="c">
                     <li className="hover:text-sky-500 dark:hover:text-sky-400">
                       Category
                     </li>
                   </Link>
-                  <Link to="/question">
+                  <Link to="q">
                     <li className="hover:text-sky-500 dark:hover:text-sky-400">
                       Question
                     </li>
                   </Link>
-                  <Link to="/admin">
+                  <Link to="a">
                     <li className="hover:text-sky-500 dark:hover:text-sky-400">
                       Admin
                     </li>
