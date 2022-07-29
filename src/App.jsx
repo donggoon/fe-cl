@@ -4,6 +4,7 @@ import Category from './components/pages/Category';
 // import Category from './components/pages/Category';
 import Login from './components/pages/Login';
 import Main from './components/pages/Main';
+import MyPage from './components/pages/MyPage';
 import Preview from './components/pages/Preview';
 import Question from './components/pages/Question';
 // import Question from './components/pages/Question';
@@ -17,10 +18,11 @@ function App() {
           <Route index element={<Question />} />
           <Route path="q" element={<Question />} />
           <Route path="c" element={<Category />} />
+          <Route path="m" element={<MyPage />} />
         </Route>
         <Route path="login" element={<Login />} />
         {/* <Route path="ready" element={<Ready />} /> */}
-        {/* <Route path="category" element={<Category />} /> */}
+        <Route path="category" element={<Category />} />
         <Route path="preview/:name" element={<Preview />} />
         {/* <Route path="question" element={<Question />} /> */}
       </Routes>

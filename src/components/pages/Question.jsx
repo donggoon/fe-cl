@@ -115,6 +115,7 @@ function Question({ id, history }) {
           <QuestionTitle id={question.id}>{question.text}</QuestionTitle>
           {question.image ? (
             <img
+              className="my-0 mx-auto"
               src={`data:image/png;base64,${question.image}`}
               alt="no images"
             />
