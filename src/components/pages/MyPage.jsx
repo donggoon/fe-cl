@@ -1,9 +1,120 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 function MyPage() {
+  const user = useSelector(state => state.user);
   return (
-    <>
+    <div className="overflow-hidden bg-white shadow sm:rounded-lg">
+      <div className="px-4 py-5 sm:px-6">
+        <h3 className="text-lg font-medium leading-6 text-gray-900">
+          {user.userid}
+        </h3>
+        <p className="mt-1 max-w-2xl text-sm text-gray-500">descriptions</p>
+      </div>
+      <div className="border-t border-gray-200">
+        <dl>
+          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">이름</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              김동건
+            </dd>
+          </div>
+          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">자격증</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <ul
+                role="list"
+                className="divide-y divide-gray-200 rounded-md border border-gray-200"
+              >
+                <li className="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+                  <div className="flex w-0 flex-1 items-center">
+                    <span className="ml-2 w-0 flex-1 truncate">
+                      AWS adfklnadnflk
+                    </span>
+                  </div>
+                </li>
+                <li className="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+                  <div className="flex w-0 flex-1 items-center">
+                    <span className="ml-2 w-0 flex-1 truncate">
+                      Naver Cloud asdfklasdnfkl
+                    </span>
+                  </div>
+                </li>
+                <li className="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+                  <div className="flex w-0 flex-1 items-center">
+                    <span className="ml-2 w-0 flex-1 truncate">
+                      ADsP adfkladnflknl
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </dd>
+          </div>
+          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">Email address</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              donggunkim@hanwha.com
+            </dd>
+          </div>
+          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">테스트 수</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              {`${'12'}회`}
+            </dd>
+          </div>
+          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">기타정보</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              asdlkfnaslkdfnlkasdnfklasdlkfnaslkdfnlkasdnfklasdlkfnaslkdfnlkasdnfkl
+              asdlkfnaslkdfnlkasdnfkl asdlkfnaslkdfnlkasdnfkl
+              asdlkfnaslkdfnlkasdnfkl
+            </dd>
+          </div>
+          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">첨부파일</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <ul
+                role="list"
+                className="divide-y divide-gray-200 rounded-md border border-gray-200"
+              >
+                <li className="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+                  <div className="flex w-0 flex-1 items-center">
+                    <span className="ml-2 w-0 flex-1 truncate">
+                      첨부파일.pdf
+                    </span>
+                  </div>
+                  <div className="ml-4 shrink-0">
+                    <a
+                      href="#"
+                      className="font-medium text-indigo-600 hover:text-indigo-500"
+                    >
+                      다운로드
+                    </a>
+                  </div>
+                </li>
+                <li className="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+                  <div className="flex w-0 flex-1 items-center">
+                    <span className="ml-2 w-0 flex-1 truncate">
+                      첨부파일2.pdf
+                    </span>
+                  </div>
+                  <div className="ml-4 shrink-0">
+                    <a
+                      href="#"
+                      className="font-medium text-indigo-600 hover:text-indigo-500"
+                    >
+                      다운로드
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </dd>
+          </div>
+        </dl>
+      </div>
+      {/* </div>
       <div className="py-6 lg:flex lg:items-center lg:justify-between">
         <div className="min-w-0 flex-1">
           <h5 className="text-xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl">
@@ -192,113 +303,8 @@ function MyPage() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="relative py-6 sm:ml-[calc(2rem+1px)] sm:pb-12 md:ml-[calc(3.5rem+1px)] lg:ml-[max(calc(14.5rem+1px),calc(100%-48rem))]">
-        <div className="absolute top-3 bottom-0 right-full mr-7 hidden w-px bg-slate-200 dark:bg-slate-800 sm:block md:mr-[3.25rem]" />
-        <div className="space-y-16">
-          <article className="group relative">
-            <div className="absolute -inset-y-2.5 -inset-x-4 group-hover:bg-slate-50/70 dark:group-hover:bg-slate-800/50 sm:rounded-2xl md:-inset-y-4 md:-inset-x-6" />
-            <svg
-              viewBox="0 0 9 9"
-              className="absolute right-full top-2 mr-6 hidden h-[calc(0.5rem+1px)] w-[calc(0.5rem+1px)] overflow-visible text-slate-200 dark:text-slate-600 sm:block md:mr-12"
-            >
-              <circle
-                cx="4.5"
-                cy="4.5"
-                r="4.5"
-                stroke="currentColor"
-                className="fill-white dark:fill-slate-900"
-                strokeWidth="2"
-              />
-            </svg>
-            <div className="relative">
-              <h3 className="pt-8 text-base font-semibold tracking-tight text-slate-900 dark:text-slate-200 lg:pt-0">
-                AWS 1230012990213i09
-              </h3>
-              <div className="prose prose-slate prose-a:relative prose-a:z-10 dark:prose-dark line-clamp-2 mt-2 mb-4">
-                <p>총 100 문항 중 80 문항 정답</p>
-              </div>
-              <dl className="absolute left-0 top-0 lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)]">
-                <dt className="sr-only">Date</dt>
-                <dd className="whitespace-nowrap text-sm leading-6 dark:text-slate-400">
-                  <time dateTime="2022-06-23T19:40:00.000Z">June 24, 2022</time>
-                </dd>
-              </dl>
-            </div>
-            <a
-              className="flex items-center text-sm font-medium text-sky-500"
-              href="/blog/2022-06-23-tailwind-templates-and-all-access"
-            >
-              <span className="absolute -inset-y-2.5 -inset-x-4 sm:rounded-2xl md:-inset-y-4 md:-inset-x-6" />
-              <span className="relative">Continue</span>
-              <svg
-                className="relative mt-px ml-2.5 overflow-visible text-sky-300 dark:text-sky-700"
-                width="3"
-                height="6"
-                viewBox="0 0 3 6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M0 0L3 3L0 6" />
-              </svg>
-            </a>
-          </article>
-          <article className="group relative">
-            <div className="absolute -inset-y-2.5 -inset-x-4 group-hover:bg-slate-50/70 dark:group-hover:bg-slate-800/50 sm:rounded-2xl md:-inset-y-4 md:-inset-x-6" />
-            <svg
-              viewBox="0 0 9 9"
-              className="absolute right-full top-2 mr-6 hidden h-[calc(0.5rem+1px)] w-[calc(0.5rem+1px)] overflow-visible text-slate-200 dark:text-slate-600 sm:block md:mr-12"
-            >
-              <circle
-                cx="4.5"
-                cy="4.5"
-                r="4.5"
-                stroke="currentColor"
-                className="fill-white dark:fill-slate-900"
-                strokeWidth="2"
-              />
-            </svg>
-            <div className="relative">
-              <h3 className="pt-8 text-base font-semibold tracking-tight text-slate-900 dark:text-slate-200 lg:pt-0">
-                ADsP 12312312-312--
-              </h3>
-              <div className="prose prose-slate prose-a:relative prose-a:z-10 dark:prose-dark line-clamp-2 mt-2 mb-4">
-                <p>총 50 문항 중 30 문항 정답</p>
-              </div>
-              <dl className="absolute left-0 top-0 lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)]">
-                <dt className="sr-only">Date</dt>
-                <dd className="whitespace-nowrap text-sm leading-6 dark:text-slate-400">
-                  <time dateTime="2022-06-07T15:00:00.000Z">June 8, 2022</time>
-                </dd>
-              </dl>
-            </div>
-            <a
-              className="flex items-center text-sm font-medium text-sky-500"
-              href="/blog/tailwindcss-v3-1"
-            >
-              <span className="absolute -inset-y-2.5 -inset-x-4 sm:rounded-2xl md:-inset-y-4 md:-inset-x-6" />
-              <span className="relative">Continue</span>
-              <svg
-                className="relative mt-px ml-2.5 overflow-visible text-sky-300 dark:text-sky-700"
-                width="3"
-                height="6"
-                viewBox="0 0 3 6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M0 0L3 3L0 6" />
-              </svg>
-            </a>
-          </article>
-        </div>
-      </div>
-    </>
+      </div> */}
+    </div>
   );
 }
 

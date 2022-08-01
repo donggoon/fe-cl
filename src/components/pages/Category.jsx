@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function Category() {
@@ -10,7 +11,8 @@ function Category() {
       p_id: '0',
       question_cnt: '100',
       success_cnt: '80',
-      url: 'https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Solutions-Architect-Associate_badge.3419559c682629072f1eb968d59dea0741772c0f.png',
+      // url: 'https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Solutions-Architect-Associate_badge.3419559c682629072f1eb968d59dea0741772c0f.png',
+      url: 'https://miro.medium.com/max/1004/1*mkz-YzBveUCAu9lUM92Arg.png',
     },
     {
       id: '2',
@@ -27,7 +29,8 @@ function Category() {
       if (row.id === 3) {
         return {
           ...row,
-          url: 'https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Solutions-Architect-Associate_badge.3419559c682629072f1eb968d59dea0741772c0f.png',
+          // url: 'https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Solutions-Architect-Associate_badge.3419559c682629072f1eb968d59dea0741772c0f.png',
+          url: 'https://miro.medium.com/max/1004/1*mkz-YzBveUCAu9lUM92Arg.png',
         };
       }
       if (row.id === 4) {
@@ -51,65 +54,60 @@ function Category() {
         console.log(err);
       });
   }, []);
-  // const callouts = [
-  //   {
-  //     name: 'AWS',
-  //     description: 'AWS Certified Solutions Architect - Associate',
-  //     imageSrc:
-  //       'https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Solutions-Architect-Associate_badge.3419559c682629072f1eb968d59dea0741772c0f.png',
-  //     imageAlt: 'AWS Certified Solutions Architect - Associate',
-  //     href: '/preview/aws',
-  //   },
-  //   {
-  //     name: 'ADsP',
-  //     description: '국가공인 데이터분석 준전문가',
-  //     imageSrc:
-  //       'https://velog.velcdn.com/images/zinu/post/8626b851-5212-48d9-80c5-2cd36c662089/image.jpg',
-  //     imageAlt: '국가공인 데이터분석 준전문가',
-  //     href: '/preview/adsp',
-  //   },
-  //   {
-  //     name: '준비중',
-  //     description: '준비중',
-  //     imageSrc: '',
-  //     imageAlt: '준비중입니다.',
-  //     href: '/preview',
-  //   },
-  // ];
 
   return (
-    <div className="bg-gray-100">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
-          <h2 className="text-2xl font-extrabold text-gray-900">
-            카테고리 선택
-          </h2>
-
-          <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
-            {categories.map(category => (
-              <div key={category.id} className="group relative">
-                <div className="sm:aspect-w-2 sm:aspect-h-1 lg:aspect-w-1 lg:aspect-h-1 relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:h-64">
-                  <img
-                    src={category.url}
-                    alt="준비중입니다"
-                    className="h-full w-full object-cover object-center"
-                  />
-                </div>
-                <h3 className="mt-6 text-sm text-gray-500">
-                  <a href={`/preview/${category.id}`}>
-                    <span className="absolute inset-0" />
-                    {category.name}
-                  </a>
-                </h3>
-                <p className="text-base font-semibold text-gray-900">
-                  {`총 ${category.question_cnt} 문항 중 ${category.success_cnt} 문항 정답`}
-                </p>
-              </div>
-            ))}
+    <ul className="sm:space-y-6">
+      {categories.map(category => (
+        <li className="-mx-4 flex flex-col-reverse items-start bg-slate-50 p-4 pb-10 dark:bg-slate-800/50 sm:mx-0 sm:rounded-2xl sm:p-10 xl:flex-row">
+          <div className="flex-auto">
+            <h3 className="mb-4 text-sm font-semibold leading-6 text-blue-500">
+              parent category
+            </h3>
+            <p className="mb-2 text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-200">
+              {category.name}
+            </p>
+            <div className="mb-6 space-y-4 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              <p>
+                {`총 ${category.question_cnt} 문항 중 ${category.success_cnt} 문항 정답`}
+              </p>
+              <p>description 2</p>
+            </div>
+            <Link
+              className="group inline-flex h-9 items-center whitespace-nowrap rounded-full bg-slate-700 px-3 text-sm font-semibold text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 dark:bg-slate-700 dark:text-slate-100 dark:hover:bg-slate-600 dark:hover:text-white dark:focus:ring-slate-500 dark:focus:ring-offset-0"
+              // to={`../q/${category.id}`}
+              to="../q"
+            >
+              시험보기
+              <svg
+                className="ml-3 overflow-visible text-slate-300 group-hover:text-slate-200 dark:text-slate-500 dark:group-hover:text-slate-400"
+                width="3"
+                height="6"
+                viewBox="0 0 3 6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M0 0L3 3L0 6" />
+              </svg>
+            </Link>
           </div>
-        </div>
-      </div>
-    </div>
+          <div className="mb-10 w-full flex-none xl:mb-0 xl:ml-8 xl:w-[29rem]">
+            <div className="aspect-w-[1216] aspect-h-[606] sm:aspect-w-[1376] sm:aspect-h-[664] overflow-hidden rounded-lg bg-slate-100 shadow-lg dark:bg-slate-800">
+              <picture>
+                <source
+                  type="image/jpeg"
+                  srcSet={category.url}
+                  media="(min-width: 640px)"
+                />
+                <img className="my-0 mx-auto" src={category.url} alt="" />
+              </picture>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
 

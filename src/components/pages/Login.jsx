@@ -1,16 +1,34 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 // import axios from 'axios';
 
-// eslint-disable-next-line no-unused-vars
-function Login({ history }) {
+import { userLogin } from '../../features/user/userSlice';
+
+import { isEmpty } from '../../functions/commonUtil';
+
+function Login() {
+  const navigate = useNavigate();
+  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    if (!isEmpty(user.userid)) {
+      return navigate('/');
+    }
+  }, []);
+
   const handleSubmit = event => {
     const formData = new FormData(event.target);
     event.preventDefault();
 
     console.log('email :', formData.get('email'));
     console.log('password :', formData.get('password'));
+
+    dispatch(userLogin(formData.get('email')));
+    return navigate('/');
     //   axios
     //     .post('http://3.37.139.180:9002/api/q/move', {
     //       email: formData.get('email'),
