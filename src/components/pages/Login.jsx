@@ -89,6 +89,9 @@ function Login() {
           >
             <span>Sign in to account</span>
           </button>
+          <p className="inline-flex w-full justify-center rounded-lg bg-slate-900 py-2.5 px-4 text-sm font-semibold text-white hover:bg-slate-700">
+            <a href="/register">Create account</a>
+          </p>
           <p className="mt-8 text-center">
             <a href="/password/reset" className="text-sm hover:underline">
               Forgot password?

@@ -7,6 +7,7 @@ import Login from './components/pages/Login';
 import Main from './components/pages/Main';
 import MyPage from './components/pages/MyPage';
 import Question from './components/pages/Question';
+import Register from './components/pages/Register';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="m" element={<MyPage />} />
         </Route>
         <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </Router>
   );
