@@ -52,7 +52,7 @@ function Register() {
 
     try {
       await firebase.auth().createUserWithEmailAndPassword(Email, PW);
-      navigate('/');
+      navigate('/login');
     } catch (err) {
       if (err.code === 'auth/invalid-mail') {
         setErrMsg('이메일 형식이 잘못되었습니다.');
@@ -63,25 +63,16 @@ function Register() {
       }
     }
 
-    const createdUser = await firebase
-      .auth()
-      .createUserWithEmailAndPassword(Email, PW);
-
-    await createdUser.user.updateProfile({
-      name: Name,
-    });
-
     const body = {
-      email: createdUser.user.multiFactor.user.email,
-      displayName: createdUser.user.multiFactor.user.displayName,
-      uid: createdUser.user.multiFactor.user.uid,
+      email: Email,
+      displayName: Name,
     };
 
     // eslint-disable-next-line no-undef, consistent-return
     axios.post('/api/user/register', body).then(response => {
       setFlag(false);
       if (response.data.success) {
-        // navigate('/login');
+        navigate('/login');
       } else {
         return alert('회원가입에 실패하였습니다.');
       }
