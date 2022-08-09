@@ -16,7 +16,7 @@ function Login() {
   // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (!isEmpty(user.userid)) {
-      return navigate('/');
+      // return navigate('/');
     }
   }, []);
 
@@ -106,7 +106,7 @@ function Login() {
           </p>
           <a
             className="inline-flex justify-center rounded-lg py-2.5 px-4 text-sm font-semibold text-slate-900 ring-1 ring-slate-900/10 hover:ring-slate-900/20"
-            href="/all-access"
+            href="/register"
           >
             <span>
               Get access <span aria-hidden="true">→</span>

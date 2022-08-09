@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const userSlice = createSlice({
   name: 'users',
   initialState: {
-    // userid: 'donggunkim',
+    userid: 'donggunkim',
   },
   reducers: {
     userLogin(state, action) {
