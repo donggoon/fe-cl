@@ -29,11 +29,11 @@ function HeaderFrame() {
                       Category
                     </li>
                   </Link>
-                  <a href="http://3.37.139.180:9002/">
+                  <Link to="a">
                     <li className="hover:text-sky-500 dark:hover:text-sky-400">
                       Admin
                     </li>
-                  </a>
+                  </Link>
                 </ul>
               </nav>
               <div className="ml-6 flex items-center border-l border-slate-200 pl-6 dark:border-slate-800">
