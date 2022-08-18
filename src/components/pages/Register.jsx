@@ -23,7 +23,7 @@ function Register() {
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
-    if (!isEmpty(user.userid)) {
+    if (!isEmpty(user.id)) {
       return alert('navigate?');
     }
   }, []);

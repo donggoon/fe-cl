@@ -1,11 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import { menuClicked } from '../../features/menu/menuSlice';
+
 function Intro() {
   const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   const [histories, setHistories] = useState([
     {
@@ -30,13 +33,23 @@ function Intro() {
   ]);
 
   useEffect(() => {
-    console.log(user.userid);
+    dispatch(
+      menuClicked({
+        id: 'Intro',
+        name: '시작하기',
+        description:
+          '새 테스트 또는 진행하던 테스트를 이어서 시작할 수 있습니다.',
+      }),
+    );
+
+    console.log(user);
+
     axios
       // .get(`http://43.200.138.19:9002/api/u/his?user_id=${user.userid}`)
-      .get('http://43.200.138.19:9002/api/u/his?user_id=1')
-      .then(data => {
-        console.log(data);
-        setHistories(data.data);
+      .get(`http://43.200.138.19:9002/api/u/his?user_id=${user.id}`)
+      .then(response => {
+        console.log(response);
+        setHistories(response.data);
       })
       .catch(err => {
         console.log(err);

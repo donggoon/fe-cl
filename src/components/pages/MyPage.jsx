@@ -1,15 +1,28 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { menuClicked } from '../../features/menu/menuSlice';
 
 function MyPage() {
   const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      menuClicked({
+        id: 'My Page',
+        name: '마이페이지',
+        description: '나의 정보를 확인해 보세요.',
+      }),
+    );
+  }, []);
   return (
     <div className="overflow-hidden bg-white shadow sm:rounded-lg">
       <div className="px-4 py-5 sm:px-6">
         <h3 className="text-lg font-medium leading-6 text-gray-900">
-          {user.userid}
+          {user.id}
         </h3>
         <p className="mt-1 max-w-2xl text-sm text-gray-500">descriptions</p>
       </div>

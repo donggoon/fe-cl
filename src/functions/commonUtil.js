@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const isEmpty = value => {
   if (
     value === '' ||
@@ -29,4 +31,34 @@ export const getHyphenated = (a, b) => {
     return a;
   }
   return `${a}-${b}`;
+};
+
+// eslint-disable-next-line default-param-last
+export const callApi = (method, url, params, type = 'json') => {
+  const baseurl = 'http://43.200.138.19:9002/';
+
+  const instance = axios.create({
+    baseURL: baseurl,
+    withCredentials: false,
+    responseType: type,
+  });
+
+  instance.interceptors.request.use(
+    request => {
+      return request;
+    },
+    // error => Promise.reject(error),
+  );
+
+  instance.interceptors.response.use(
+    response => {
+      return response;
+    },
+    // error => Promise.reject(error),
+  );
+
+  if (method.toLowerCase() === 'post') {
+    return instance.post(url, params);
+  }
+  return instance.get(url, { params });
 };

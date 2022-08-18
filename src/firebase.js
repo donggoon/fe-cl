@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 

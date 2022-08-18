@@ -5,11 +5,11 @@ import { createSlice } from '@reduxjs/toolkit';
 const userSlice = createSlice({
   name: 'users',
   initialState: {
-    userid: 'donggunkim',
+    id: '1',
   },
   reducers: {
     userLogin(state, action) {
-      state.userid = action.payload;
+      state.id = action.payload;
       // state.push({
       //   id: action.payload,
       //   text: action.payload.text,
