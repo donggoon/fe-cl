@@ -9,7 +9,7 @@ import MainSider from '../MainSider';
 
 function MainFrame() {
   const menu = useSelector(state => state.menu);
-  console.log('Main', menu);
+
   return (
     <div className="mx-auto max-w-8xl px-4 sm:px-6 md:px-8">
       <div

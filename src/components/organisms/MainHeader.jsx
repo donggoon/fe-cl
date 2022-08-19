@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 function MainHeader() {
   const menu = useSelector(state => state.menu);
-  console.log(menu);
 
   return (
     <header id="header" className="relative z-20">

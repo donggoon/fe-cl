@@ -83,7 +83,6 @@ function Category() {
       ...params,
     })
       .then(response => {
-        console.log('category', response);
         if (!isEmpty(response.data)) {
           const progressSet = response.data.progress_set.split(',');
           // 다음 문제 진행 체크
@@ -98,11 +97,12 @@ function Category() {
             progressSet,
             questionSet: response.data.question_set.split(','),
             seq: response.data.seq,
-            startDt: response.data.start_dt,
+            // startDt: response.data.start_dt,
+            startDt: new Date(),
             successCd: response.data.success_cd,
             userId: response.data.user_id,
           };
-          dispatch(initQuiz(response.data));
+          dispatch(initQuiz(payload));
           navigate(`/q/${payload.questionSet[0]}`);
         }
       })

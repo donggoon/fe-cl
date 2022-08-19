@@ -24,9 +24,6 @@ function Login() {
     const formData = new FormData(event.target);
     event.preventDefault();
 
-    console.log('email :', formData.get('email'));
-    console.log('password :', formData.get('password'));
-
     dispatch(userLogin(formData.get('email')));
     return navigate('/');
     //   axios

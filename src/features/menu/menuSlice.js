@@ -11,7 +11,6 @@ const menuSlice = createSlice({
   },
   reducers: {
     menuClicked(state, action) {
-      console.log('action', action.payload);
       state.id = action.payload.id;
       state.name = action.payload.name;
       state.description = action.payload.description;

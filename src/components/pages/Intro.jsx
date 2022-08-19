@@ -42,8 +42,6 @@ function Intro() {
       }),
     );
 
-    console.log(user);
-
     axios
       // .get(`http://43.200.138.19:9002/api/u/his?user_id=${user.userid}`)
       .get(`http://43.200.138.19:9002/api/u/his?user_id=${user.id}`)

@@ -19,7 +19,6 @@ const quizSlice = createSlice({
   },
   reducers: {
     initQuiz(state, action) {
-      console.log('action', action.payload);
       state.answerSet = action.payload.answerSet;
       state.categoryId = action.payload.categoryId;
       state.correctSet = action.payload.correctSet;
