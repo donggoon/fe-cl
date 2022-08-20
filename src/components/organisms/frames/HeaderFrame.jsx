@@ -24,6 +24,11 @@ function HeaderFrame() {
                       Category
                     </li>
                   </Link>
+                  <Link to="login">
+                    <li className="hover:text-sky-500 dark:hover:text-sky-400">
+                      Login
+                    </li>
+                  </Link>
                   <a href="http://43.200.138.19:9002/">
                     <li className="hover:text-sky-500 dark:hover:text-sky-400">
                       Admin
