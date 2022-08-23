@@ -35,7 +35,7 @@ export const getHyphenated = (a, b) => {
 
 // eslint-disable-next-line default-param-last
 export const callApi = (method, url, params, type = 'json') => {
-  const baseurl = 'http://43.200.138.19:9002/';
+  const baseurl = 'http://localhost:9002/';
 
   const instance = axios.create({
     baseURL: baseurl,
@@ -61,4 +61,16 @@ export const callApi = (method, url, params, type = 'json') => {
     return instance.post(url, params);
   }
   return instance.get(url, { params });
+};
+
+export const getFormattedAnswer = entries => {
+  let formattedAnswer = '';
+  // eslint-disable-next-line no-restricted-syntax
+  for (const [key, value] of entries) {
+    if (value === 'true') {
+      formattedAnswer += `${key}:`;
+    }
+  }
+
+  return formattedAnswer.slice(0, -1);
 };

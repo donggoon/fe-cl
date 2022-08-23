@@ -5,20 +5,21 @@ import { createSlice } from '@reduxjs/toolkit';
 const quizSlice = createSlice({
   name: 'quizs',
   initialState: {
-    answerSet: '0,0,0,0,0,0',
-    categoryId: 3,
-    correctSet: '0,0,0,0,0,0',
-    endDt: '2022-08-18T06:19:46.644Z',
-    id: 172,
-    progressSet: '0,0,0,0,0,0',
-    questionSet: '1,7,9,11,13,15',
-    seq: 107,
-    startDt: '2022-08-18T06:19:46.644Z',
-    successCd: 'S',
-    userId: 1,
+    answerSet: null,
+    categoryId: null,
+    correctSet: null,
+    endDt: null,
+    id: null,
+    progressSet: null,
+    questionSet: null,
+    seq: null,
+    startDt: null,
+    successCd: null,
+    userId: null,
   },
   reducers: {
     initQuiz(state, action) {
+      console.log('initQuiz', action.payload);
       state.answerSet = action.payload.answerSet;
       state.categoryId = action.payload.categoryId;
       state.correctSet = action.payload.correctSet;

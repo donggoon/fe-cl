@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import MainFooter from '../MainFooter';
 import MainHeader from '../MainHeader';
-import MainSider from '../MainSider';
+import QuestionSider from '../QuestionSider';
 
 function MainFrame() {
   const menu = useSelector(state => state.menu);
@@ -28,7 +28,7 @@ function MainFrame() {
           <Outlet />
         </div>
         <MainFooter />
-        {menu.id === 'Question' ? <MainSider /> : null}
+        {menu.id === 'Question' ? <QuestionSider /> : null}
       </div>
     </div>
   );

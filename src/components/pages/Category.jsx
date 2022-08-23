@@ -17,21 +17,12 @@ function Category() {
 
   const [categories, setCategories] = useState([
     {
-      id: '1',
-      name: 'AWS',
-      p_id: '0',
-      question_cnt: '100',
-      success_cnt: '80',
-      // url: 'https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Solutions-Architect-Associate_badge.3419559c682629072f1eb968d59dea0741772c0f.png',
-      url: 'https://miro.medium.com/max/1004/1*mkz-YzBveUCAu9lUM92Arg.png',
-    },
-    {
-      id: '2',
-      name: 'ADsP',
-      p_id: '0',
-      question_cnt: '50',
-      success_cnt: '40',
-      url: 'https://velog.velcdn.com/images/zinu/post/8626b851-5212-48d9-80c5-2cd36c662089/image.jpg',
+      id: '',
+      name: '',
+      p_id: '',
+      question_cnt: '',
+      success_cnt: '',
+      url: '',
     },
   ]);
 
@@ -40,7 +31,6 @@ function Category() {
       if (row.id === 1) {
         return {
           ...row,
-          // url: 'https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Solutions-Architect-Associate_badge.3419559c682629072f1eb968d59dea0741772c0f.png',
           url: 'https://miro.medium.com/max/1004/1*mkz-YzBveUCAu9lUM92Arg.png',
         };
       }
@@ -98,10 +88,11 @@ function Category() {
             questionSet: response.data.question_set.split(','),
             seq: response.data.seq,
             // startDt: response.data.start_dt,
-            startDt: new Date(),
+            startDt: response.data.start_dt,
             successCd: response.data.success_cd,
             userId: response.data.user_id,
           };
+          console.log('payload', payload);
           dispatch(initQuiz(payload));
           navigate(`/q/${payload.questionSet[0]}`);
         }

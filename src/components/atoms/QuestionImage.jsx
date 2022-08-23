@@ -1,15 +1,13 @@
 import React from 'react';
 
-function QutestionImage() {
-  return (
-    <div>
-      <img
-        className="relative h-72 w-auto"
-        src="./img/cat.png"
-        alt="Workflow"
-      />
-    </div>
-  );
+function QutestionImage({ src }) {
+  return src ? (
+    <img
+      className="my-0 mx-auto"
+      src={`data:image/png;base64,${src}`}
+      alt="no images"
+    />
+  ) : null;
 }
 
 export default QutestionImage;

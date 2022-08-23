@@ -1,13 +1,17 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import CheckIcon from '../atoms/CheckIcon';
 
 // function Check({ id, name, text, checked }) {
 function QuestionOption({ option }) {
   const [checked, setChecked] = useState(option.checked);
+
+  useEffect(() => {
+    setChecked(option.checked);
+  }, [option]);
 
   const handleClick = () => {
     setChecked(!checked);
