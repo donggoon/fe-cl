@@ -19,7 +19,6 @@ const quizSlice = createSlice({
   },
   reducers: {
     initQuiz(state, action) {
-      console.log('initQuiz', action.payload);
       state.answerSet = action.payload.answerSet;
       state.categoryId = action.payload.categoryId;
       state.correctSet = action.payload.correctSet;
@@ -31,11 +30,6 @@ const quizSlice = createSlice({
       state.startDt = action.payload.startDt;
       state.successCd = action.payload.successCd;
       state.userId = action.payload.userId;
-      // state.push({
-      //   id: action.payload,
-      //   text: action.payload.text,
-      //   completed: false,
-      // });
     },
     setAnswerSet(state, action) {
       state.answerSet = action.payload;

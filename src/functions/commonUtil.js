@@ -67,10 +67,27 @@ export const getFormattedAnswer = entries => {
   let formattedAnswer = '';
   // eslint-disable-next-line no-restricted-syntax
   for (const [key, value] of entries) {
+    console.log('key:', key, ', value:', value);
     if (value === 'true') {
       formattedAnswer += `${key}:`;
     }
   }
 
   return formattedAnswer.slice(0, -1);
+};
+
+export const getFormattedQuizInfo = data => {
+  return {
+    answerSet: data.answer_set.split(','),
+    categoryId: data.category_id,
+    correctSet: data.correct_set.split(','),
+    endDt: data.end_dt,
+    id: data.id,
+    progressSet: data.progress_set.split(','),
+    questionSet: data.question_set.split(','),
+    seq: data.seq,
+    startDt: data.start_dt,
+    successCd: data.success_cd,
+    userId: data.user_id,
+  };
 };

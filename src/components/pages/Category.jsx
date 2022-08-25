@@ -8,7 +8,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { menuClicked } from '../../features/menu/menuSlice';
 import { initQuiz, setProgressSet } from '../../features/quiz/quizSlice';
 
-import { callApi, isEmpty } from '../../functions/commonUtil';
+import {
+  callApi,
+  getFormattedQuizInfo,
+  isEmpty,
+} from '../../functions/commonUtil';
 
 function Category() {
   const navigate = useNavigate();
@@ -74,24 +78,11 @@ function Category() {
     })
       .then(response => {
         if (!isEmpty(response.data)) {
+          const payload = getFormattedQuizInfo(response.data);
           const progressSet = response.data.progress_set.split(',');
           // 다음 문제 진행 체크
-          progressSet[0] = 1;
-
-          const payload = {
-            answerSet: response.data.answer_set.split(','),
-            categoryId: response.data.category_id,
-            correctSet: response.data.correct_set.split(','),
-            endDt: response.data.end_dt,
-            id: response.data.id,
-            progressSet,
-            questionSet: response.data.question_set.split(','),
-            seq: response.data.seq,
-            // startDt: response.data.start_dt,
-            startDt: response.data.start_dt,
-            successCd: response.data.success_cd,
-            userId: response.data.user_id,
-          };
+          progressSet[0] = '1';
+          payload.progressSet = progressSet;
           console.log('payload', payload);
           dispatch(initQuiz(payload));
           navigate(`/q/${payload.questionSet[0]}`);
@@ -105,7 +96,10 @@ function Category() {
   return (
     <ul className="sm:space-y-6">
       {categories.map(category => (
-        <li className="-mx-4 flex flex-col-reverse items-start bg-slate-50 p-4 pb-10 dark:bg-slate-800/50 sm:mx-0 sm:rounded-2xl sm:p-10 xl:flex-row">
+        <li
+          ket={category.id}
+          className="-mx-4 flex flex-col-reverse items-start bg-slate-50 p-4 pb-10 dark:bg-slate-800/50 sm:mx-0 sm:rounded-2xl sm:p-10 xl:flex-row"
+        >
           <div className="flex-auto">
             <h3 className="mb-4 text-sm font-semibold leading-6 text-blue-500">
               parent category

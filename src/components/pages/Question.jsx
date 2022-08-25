@@ -49,6 +49,7 @@ function Question() {
     });
     return checkedOptions;
   };
+
   useEffect(() => {
     if (isEmpty(quiz.id)) {
       navigate('../../c');
@@ -80,13 +81,14 @@ function Question() {
       return;
     }
     const formData = new FormData(target);
+    console.log('formData', formData);
     const answerSet = [...quiz.answerSet];
     const progressSet = [...quiz.progressSet];
 
     // 현재 문제 정답 체크
     answerSet[currentIndex] = getFormattedAnswer(formData.entries());
     // 현재 문제 완료 체크
-    progressSet[currentIndex] = 2;
+    progressSet[currentIndex] = '2';
 
     const params = {
       answer_set: answerSet.toString(),
@@ -133,7 +135,7 @@ function Question() {
 
           // 다음 문제 진행 체크
           if (progressSet[targetIndex] < 1) {
-            progressSet[currentIndex + 1] = 1;
+            progressSet[currentIndex + 1] = '1';
           }
           dispatch(setProgressSet(progressSet));
           navigate(`../../q/${quiz.questionSet[targetIndex]}`);
@@ -164,7 +166,7 @@ function Question() {
           <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
             <QuestionTitle id={question.id}>{question.text}</QuestionTitle>
             <QutestionImage src={question.image} />
-            <QuestionOptionGroup options={options} />
+            <QuestionOptionGroup type={question.type} options={options} />
           </div>
           <div className="px-4 py-3 text-right sm:px-6">
             <SubmitButton name="previous">Previous</SubmitButton>

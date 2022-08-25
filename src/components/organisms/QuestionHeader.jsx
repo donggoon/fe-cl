@@ -13,7 +13,7 @@ function QuestionHeader() {
   );
 
   const [completeCount, setCompleteCount] = useState(
-    quiz.progressSet.filter(value => value === 2).length,
+    quiz.progressSet.filter(value => Number(value) === 2).length,
   );
   const [totalCount] = useState(quiz.questionSet.length);
   const [progressPercent, setProgressPercent] = useState(
@@ -26,7 +26,7 @@ function QuestionHeader() {
       '0',
     );
     const minute = String(
-      parseInt(originProgressTime / 60, 10) % 3600,
+      parseInt((originProgressTime % 3600) / 60, 10),
     ).padStart(2, '0');
     const second = String(parseInt(originProgressTime % 60, 10)).padStart(
       2,
@@ -48,7 +48,9 @@ function QuestionHeader() {
   }, [progressTime]);
 
   useEffect(() => {
-    setCompleteCount(quiz.progressSet.filter(value => value === 2).length);
+    setCompleteCount(
+      quiz.progressSet.filter(value => Number(value) === 2).length,
+    );
   }, [quiz.progressSet]);
 
   useEffect(() => {
