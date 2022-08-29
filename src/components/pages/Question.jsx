@@ -1,10 +1,10 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import QuestionTitle from '../atoms/QuestionTitle';
-// eslint-disable-next-line no-unused-vars
 import QuestionOption from '../molecules/QuestionOption';
 import QuestionOptionGroup from '../organisms/QuestionOptionGroup';
 
@@ -23,6 +23,7 @@ import {
 import SubmitButton from '../atoms/SubmitButton';
 import QutestionImage from '../atoms/QuestionImage';
 import QuestionHeader from '../organisms/QuestionHeader';
+import Divider from '../atoms/Divider';
 
 function Question() {
   const navigate = useNavigate();
@@ -85,10 +86,15 @@ function Question() {
     const answerSet = [...quiz.answerSet];
     const progressSet = [...quiz.progressSet];
 
-    // 현재 문제 정답 체크
-    answerSet[currentIndex] = getFormattedAnswer(formData.entries());
+    const formattedAnswer = getFormattedAnswer(formData.entries());
     // 현재 문제 완료 체크
-    progressSet[currentIndex] = '2';
+    if (isEmpty(formattedAnswer)) {
+      progressSet[currentIndex] = '1'; // 건너뜀
+      answerSet[currentIndex] = '0';
+    } else {
+      progressSet[currentIndex] = '2'; // 완료됨
+      answerSet[currentIndex] = formattedAnswer;
+    }
 
     const params = {
       answer_set: answerSet.toString(),
@@ -102,6 +108,12 @@ function Question() {
     };
 
     if (targetIndex > lastIndex) {
+      for (let i = 0; i < progressSet.length; i += 1) {
+        if (String(progressSet[i]) === '0') {
+          alert(`질문 ${quiz.questionSet[i]}번이 완료되지 않았습니다.`);
+          return;
+        }
+      }
       callApi('post', 'api/q/end', {
         ...params,
       })
@@ -132,14 +144,10 @@ function Question() {
       })
         .then(() => {
           dispatch(setAnswerSet(answerSet));
-
-          // 다음 문제 진행 체크
-          if (progressSet[targetIndex] < 1) {
-            progressSet[currentIndex + 1] = '1';
-          }
           dispatch(setProgressSet(progressSet));
           navigate(`../../q/${quiz.questionSet[targetIndex]}`);
           // console.log(response);
+          // /u/his/{quiz.id}
         })
         .catch(err => {
           console.log(err);
@@ -159,22 +167,27 @@ function Question() {
   };
 
   return (
-    <>
-      {!isEmpty(quiz.id) ? <QuestionHeader /> : null}
-      <form onSubmit={handleSubmit}>
-        <div className="overflow-hidden sm:rounded-md">
-          <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
-            <QuestionTitle id={question.id}>{question.text}</QuestionTitle>
+    <form onSubmit={handleSubmit}>
+      <div className="overflow-hidden shadow sm:rounded-md">
+        {!isEmpty(quiz.id) ? <QuestionHeader /> : null}
+        <Divider padding="1" />
+        <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+          <QuestionTitle id={question.id} text={question.text}>
             <QutestionImage src={question.image} />
-            <QuestionOptionGroup type={question.type} options={options} />
-          </div>
-          <div className="px-4 py-3 text-right sm:px-6">
-            <SubmitButton name="previous">Previous</SubmitButton>
-            <SubmitButton name="next">Next</SubmitButton>
-          </div>
+          </QuestionTitle>
+          <Divider padding="1" />
+          <QuestionOptionGroup
+            type={question.type}
+            options={options}
+            setOptions={setOptions}
+          />
         </div>
-      </form>
-    </>
+        <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+          <SubmitButton name="previous">Previous</SubmitButton>
+          <SubmitButton name="next">Next</SubmitButton>
+        </div>
+      </div>
+    </form>
   );
 }
 

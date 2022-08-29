@@ -59,7 +59,6 @@ function Category() {
 
     callApi('get', '/api/q/category')
       .then(response => {
-        console.log(response);
         setCategories(injectUrl(response.data));
       })
       .catch(err => {
@@ -83,7 +82,6 @@ function Category() {
           // 다음 문제 진행 체크
           progressSet[0] = '1';
           payload.progressSet = progressSet;
-          console.log('payload', payload);
           dispatch(initQuiz(payload));
           navigate(`/q/${payload.questionSet[0]}`);
         }
@@ -97,7 +95,7 @@ function Category() {
     <ul className="sm:space-y-6">
       {categories.map(category => (
         <li
-          ket={category.id}
+          key={category.id}
           className="-mx-4 flex flex-col-reverse items-start bg-slate-50 p-4 pb-10 dark:bg-slate-800/50 sm:mx-0 sm:rounded-2xl sm:p-10 xl:flex-row"
         >
           <div className="flex-auto">
