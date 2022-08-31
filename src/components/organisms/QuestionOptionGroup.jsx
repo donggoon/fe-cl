@@ -26,6 +26,7 @@ function QuestionOptionGroup({
     return _options.map(option => {
       return (
         <QuestionOption
+          key={option.id}
           type={type}
           option={option}
           handleChange={handleChange}

@@ -22,7 +22,7 @@ function QuestionSider() {
       <ul className="text-sm leading-6 text-slate-700">
         {quiz.questionSet.map((questionNumber, index) => {
           return (
-            <li>
+            <li key={questionNumber}>
               <button
                 type="button"
                 name={questionNumber}

@@ -7,7 +7,7 @@ function QuestionTitle({ id, text, children }) {
         <h3 className="text-lg font-medium leading-6 text-gray-900">
           {`질문 ${id}`}
         </h3>
-        <p className="mt-1 text-sm text-gray-600">{text}</p>
+        <p className="mt-1 whitespace-pre-line text-sm text-gray-600">{text}</p>
         {children}
       </div>
     </div>

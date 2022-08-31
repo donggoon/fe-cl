@@ -28,7 +28,7 @@ function QuestionOption({ type, option, handleChange }) {
   };
   return (
     <div
-      className={`group pointer-events-auto w-full cursor-pointer rounded-lg bg-white p-4 text-[0.8125rem] leading-5 shadow-xl shadow-black/5 ${getOptionStyle(
+      className={`group pointer-events-auto w-full cursor-pointer whitespace-pre-wrap rounded-lg bg-white p-4 text-[0.8125rem] leading-5 shadow-xl shadow-black/5 ${getOptionStyle(
         checked,
         option.correct,
       )} hover:bg-slate-50`}
