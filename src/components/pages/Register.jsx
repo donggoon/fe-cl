@@ -30,7 +30,7 @@ function Register() {
     };
 
     // eslint-disable-next-line no-undef, consistent-return
-    callApi('post', '/api/u', body)
+    callApi('post', '/u', body)
       .then(response => {
         if (response.status === 200) {
           alert('회원가입이 완료되었습니다.\n로그인 후 이용해주세요.');

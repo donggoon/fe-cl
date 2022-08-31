@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { getIsProgressed } from '../../functions/commonUtil';
 // import { isEmpty } from '../../functions/commonUtil';
 
 import ClockIcon from '../atoms/ClockIcon';
@@ -49,7 +50,7 @@ function QuestionHeader() {
 
   useEffect(() => {
     setCompleteCount(
-      quiz.progressSet.filter(value => String(value) === '2').length,
+      quiz.progressSet.filter(value => getIsProgressed(value)).length,
     );
   }, [quiz.progressSet]);
 

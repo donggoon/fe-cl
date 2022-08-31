@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable import/prefer-default-export */
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import {
@@ -34,7 +33,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

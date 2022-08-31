@@ -9,6 +9,7 @@ import MyPage from './components/pages/MyPage';
 import Question from './components/pages/Question';
 import Register from './components/pages/Register';
 import Admin from './components/pages/Admin';
+import Review from './components/pages/Review';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="c" element={<Category />} />
           <Route path="m" element={<MyPage />} />
           <Route path="a" element={<Admin />} />
+          <Route path="r/:id" element={<Review />} />
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />

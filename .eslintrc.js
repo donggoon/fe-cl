@@ -21,7 +21,7 @@ module.exports = {
     ],
     'react/prop-types': ['off'],
     'tailwindcss/classname-order': 'off',
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-alert': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': 'off',
+    'no-alert': 'off',
   },
 };

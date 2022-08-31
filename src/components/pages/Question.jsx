@@ -8,7 +8,7 @@ import QuestionTitle from '../atoms/QuestionTitle';
 import QuestionOption from '../molecules/QuestionOption';
 import QuestionOptionGroup from '../organisms/QuestionOptionGroup';
 
-import { menuClicked } from '../../features/menu/menuSlice';
+import { menuChanged } from '../../features/menu/menuSlice';
 import {
   initQuiz,
   setAnswerSet,
@@ -57,14 +57,14 @@ function Question() {
     }
 
     dispatch(
-      menuClicked({
+      menuChanged({
         id: 'Question',
         name: '문제풀기',
         description: '문제를 잘 읽고 정답을 고르세요.',
       }),
     );
 
-    callApi('get', `/api/q/${id}`)
+    callApi('get', `/q/${id}`)
       .then(response => {
         setQuestion(response.data.question);
         setOptions(getCheckedOptions(response.data.options));
@@ -101,7 +101,7 @@ function Question() {
       category_id: quiz.categoryId,
       correct_set: quiz.correctSet.toString(),
       id: quiz.id,
-      progress_set: quiz.progressSet.toString(),
+      progress_set: progressSet.toString(),
       question_id: id,
       question_set: quiz.questionSet.toString(),
       success_cd: quiz.successCd,
@@ -114,7 +114,7 @@ function Question() {
           return;
         }
       }
-      callApi('post', 'api/q/end', {
+      callApi('post', '/q/end', {
         ...params,
       })
         .then(response => {
@@ -132,22 +132,19 @@ function Question() {
             userId: response.data.user_id,
           };
           dispatch(initQuiz(payload));
-          navigate(`../../end`);
-          console.log(response);
+          navigate(`../../r/${quiz.id}`);
         })
         .catch(err => {
           console.log(err);
         });
     } else {
-      callApi('post', '/api/q/move', {
+      callApi('post', '/q/move', {
         ...params,
       })
         .then(() => {
           dispatch(setAnswerSet(answerSet));
           dispatch(setProgressSet(progressSet));
           navigate(`../../q/${quiz.questionSet[targetIndex]}`);
-          // console.log(response);
-          // /u/his/{quiz.id}
         })
         .catch(err => {
           console.log(err);

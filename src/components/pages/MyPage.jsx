@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { menuClicked } from '../../features/menu/menuSlice';
+import { menuChanged } from '../../features/menu/menuSlice';
 
 function MyPage() {
   const user = useSelector(state => state.user);
@@ -11,7 +11,7 @@ function MyPage() {
 
   useEffect(() => {
     dispatch(
-      menuClicked({
+      menuChanged({
         id: 'My Page',
         name: '마이페이지',
         description: '나의 정보를 확인해 보세요.',

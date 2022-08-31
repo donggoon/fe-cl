@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -12,13 +11,14 @@ function MainFrame() {
   const menu = useSelector(state => state.menu);
   const quiz = useSelector(state => state.quiz);
 
-  const isProcessing = (menu.id === 'Question' && !isEmpty(quiz.id));
+  const isProcessing = menu.id === 'Question' && !isEmpty(quiz.id);
 
   return (
     <div className="mx-auto max-w-8xl px-4 sm:px-6 md:px-8">
       <div
-        className={`mx-auto max-w-3xl pt-10 xl:ml-0 ${isProcessing ? 'xl:mr-[15.5rem]' : ''
-          } xl:max-w-none xl:pr-16`}
+        className={`mx-auto max-w-3xl pt-10 xl:ml-0 ${
+          isProcessing ? 'xl:mr-[15.5rem]' : ''
+        } xl:max-w-none xl:pr-16`}
       >
         <MainHeader />
         {/* <div
