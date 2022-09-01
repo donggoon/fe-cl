@@ -52,4 +52,4 @@ jobs:
           --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
           --ignore-hidden-files \
           --s3-location s3://$S3_BUCKET_NAME/FE-$GITHUB_SHA.zip \
-          --source 'build/*'
+          --source .
