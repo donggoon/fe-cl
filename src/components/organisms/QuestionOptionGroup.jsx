@@ -2,10 +2,36 @@ import React from 'react';
 
 import QuestionOption from '../molecules/QuestionOption';
 
-function QuestionOptionGroup({ options, children }) {
+function QuestionOptionGroup({
+  type,
+  options,
+  setOptions = () => {},
+  children,
+}) {
+  const handleChange = id => {
+    setOptions(
+      options.map(option => {
+        if (id !== option.id) {
+          return {
+            ...option,
+            checked: false,
+          };
+        }
+        return option;
+      }),
+    );
+  };
+
   const getOptions = _options => {
     return _options.map(option => {
-      return <QuestionOption option={option} />;
+      return (
+        <QuestionOption
+          key={option.id}
+          type={type}
+          option={option}
+          handleChange={handleChange}
+        />
+      );
     });
   };
 
