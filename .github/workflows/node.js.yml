@@ -3,6 +3,12 @@
 
 name: Node.js CI
 
+env:
+  AWS_REGION: ap-northeast-2
+  S3_BUCKET_NAME: le-cl-bucket
+  CODE_DEPLOY_APPLICATION_NAME: le-cl-app
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: le-cl-group
+  
 on:
   push:
     branches: [ "master" ]
@@ -30,3 +36,20 @@ jobs:
     - run: npm run build --if-present
       env:
         CI: ""
+    - name: Configure AWS Credentials
+      # You may pin to the exact commit or the version.
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        # AWS Access Key ID
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        # AWS Secret Access Key
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        # AWS Region, e.g. us-east-2
+        aws-region: ${{ secrets.AWS_REGION }}
+    - name: upload to S3
+      run: |
+        aws deploy push \
+          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
+          --ignore-hidden-files \
+          --s3-location s3://$S3_BUCKET_NAME/FE-$GITHUB_SHA.zip \
+          --source 'build/*'
