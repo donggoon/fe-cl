@@ -46,7 +46,7 @@ function Review() {
       });
   }, [id]);
 
-  return history.resultDetails.map(resultDetail => {
+  return history.resultDetails.map((resultDetail, index) => {
     const { question, options } = resultDetail;
     return (
       <div
@@ -56,7 +56,10 @@ function Review() {
         <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
           <div className="space-y-2">
             <StatusText value={question.correct_yn} />
-            <QuestionTitle id={question.id} text={question.text}>
+            <QuestionTitle
+              seq={index + 1 /* TODO seq 값으로 변경 */}
+              text={question.text}
+            >
               <QutestionImage src={question.image} />
             </QuestionTitle>
             <Divider padding="1" />

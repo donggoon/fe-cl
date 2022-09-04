@@ -1,17 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import StatusText from '../atoms/StatusText';
 
 function ReviewSider() {
-  const navigate = useNavigate();
   const quiz = useSelector(state => state.quiz);
   const { id } = useParams();
 
   const handleClick = (e, questionNumber) => {
     e.preventDefault();
-
-    navigate(`../../q/${questionNumber}`);
+    console.log('questionNumber', questionNumber);
   };
 
   return (
@@ -33,9 +31,9 @@ function ReviewSider() {
                 }`}
                 onClick={e => handleClick(e, questionNumber)}
               >
-                {`질문 ${questionNumber}`}
+                {`질문 ${index + 1}` /* TODO seq 값으로 변경 */}
               </button>
-              <StatusText value={quiz.progressSet[index]} />
+              <StatusText value={quiz.correctSet[index]} />
             </li>
           );
         })}

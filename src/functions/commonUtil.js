@@ -156,9 +156,9 @@ export const getOptionColor = (checked, correct) => {
   //   return 'rgb(99 102 241)';
   // }
   // 오답
-  // if (!correct && checked) {
-  //   return 'rgb(125 211 252)';
-  // }
+  if (!correct && checked) {
+    return 'rgb(256 256 256)';
+  }
   // 미채점
   if (isEmpty(correct) && checked) {
     return 'rgb(99 102 241)';
@@ -176,9 +176,9 @@ export const getOptionStyle = (checked, correct) => {
     return 'ring-2 ring-indigo-500';
   }
   // 오답
-  // if (!correct && checked) {
-  //   return 'ring-2 ring-sky-300';
-  // }
+  if (!correct && checked) {
+    return 'ring-2 ring-indigo-500';
+  }
   // 미채점
   if (isEmpty(correct) && checked) {
     return 'ring-2 ring-indigo-500';

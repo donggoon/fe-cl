@@ -7,12 +7,6 @@ function MainFooter() {
         <div className="mb-6 sm:mb-0 sm:flex">
           <p>Copyright © 2022 </p>
         </div>
-        <a
-          className="hover:text-slate-900 dark:hover:text-slate-400"
-          href="https://github.com/tailwindlabs/tailwindcss.com/edit/master/src/pages/docs/utility-first.mdx"
-        >
-          Edit this page on GitHub
-        </a>
       </div>
     </footer>
   );

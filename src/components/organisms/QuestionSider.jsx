@@ -33,7 +33,7 @@ function QuestionSider() {
                 }`}
                 onClick={e => handleClick(e, questionNumber)}
               >
-                {`질문 ${questionNumber}`}
+                {`질문 ${index + 1}` /* TODO seq 값으로 변경 */}
               </button>
               <StatusText value={quiz.progressSet[index]} />
             </li>

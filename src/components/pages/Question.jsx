@@ -110,7 +110,8 @@ function Question() {
     if (targetIndex > lastIndex) {
       for (let i = 0; i < progressSet.length; i += 1) {
         if (String(progressSet[i]) === '0') {
-          alert(`질문 ${quiz.questionSet[i]}번이 완료되지 않았습니다.`);
+          // TODO seq 값으로 변경
+          alert(`질문 ${i + 1}번이 완료되지 않았습니다.`);
           return;
         }
       }
@@ -169,7 +170,11 @@ function Question() {
         {!isEmpty(quiz.id) ? <QuestionHeader /> : null}
         <Divider padding="1" />
         <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
-          <QuestionTitle id={question.id} text={question.text}>
+          <QuestionTitle
+            // TODO seq 값으로 변경
+            seq={quiz.questionSet.indexOf(id) + 1}
+            text={question.text}
+          >
             <QutestionImage src={question.image} />
           </QuestionTitle>
           <Divider padding="1" />

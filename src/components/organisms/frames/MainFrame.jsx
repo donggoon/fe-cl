@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import MainFooter from '../MainFooter';
 import MainHeader from '../MainHeader';
 import QuestionSider from '../QuestionSider';
+import ReviewSider from '../ReviewSider';
 import { isEmpty } from '../../../functions/commonUtil';
 
 function MainFrame() {
@@ -12,12 +13,13 @@ function MainFrame() {
   const quiz = useSelector(state => state.quiz);
 
   const isProcessing = menu.id === 'Question' && !isEmpty(quiz.id);
+  const isReviewing = menu.id === 'Review';
 
   return (
     <div className="mx-auto max-w-8xl px-4 sm:px-6 md:px-8">
       <div
         className={`mx-auto max-w-3xl pt-10 xl:ml-0 ${
-          isProcessing ? 'xl:mr-[15.5rem]' : ''
+          isProcessing || isReviewing ? 'xl:mr-[15.5rem]' : ''
         } xl:max-w-none xl:pr-16`}
       >
         <MainHeader />
@@ -33,6 +35,7 @@ function MainFrame() {
         </div>
         <MainFooter />
         {isProcessing ? <QuestionSider /> : null}
+        {isReviewing ? <ReviewSider /> : null}
       </div>
     </div>
   );
