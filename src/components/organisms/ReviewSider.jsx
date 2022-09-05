@@ -5,15 +5,6 @@ import StatusText from '../atoms/StatusText';
 function ReviewSider() {
   const history = useSelector(state => state.history);
 
-  const handleScroll = (e, ref) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: ref.offsetTop,
-      left: 0,
-      behavior: 'smooth',
-    });
-  };
-
   return (
     <div className="fixed top-[3.8125rem] bottom-0 right-[max(0px,calc(50%-45rem))] z-20 hidden w-[19.5rem] overflow-y-auto py-10 px-8 xl:block">
       <h5 className="mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">
@@ -23,7 +14,7 @@ function ReviewSider() {
         {history.resultDetails.map((resultDetail, index) => {
           const { question } = resultDetail;
           return (
-            <li key={question.id}>
+            <li className="flex items-center" key={question.id}>
               <button
                 type="button"
                 name={question.id}
@@ -33,7 +24,7 @@ function ReviewSider() {
                   // : 'hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
                   'hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
                 }`}
-                onClick={e => handleScroll(e, history.itemsRef[index])}
+                onClick={resultDetail.handleScroll}
               >
                 {`질문 ${index + 1}`}
               </button>

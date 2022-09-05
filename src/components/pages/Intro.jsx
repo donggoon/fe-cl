@@ -64,86 +64,82 @@ function Intro() {
   };
 
   return (
-    <div>
-      <div className="px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-[37rem] lg:max-w-[50rem]">
-          <ul className="divide-y divide-gray-100">
-            {histories.map(history => {
-              return (
-                <li key={history.id}>
-                  <div className="group relative py-6 sm:rounded-2xl">
-                    <div className="absolute -inset-x-4 -inset-y-px bg-gray-50 opacity-0 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl lg:-inset-x-8" />
-                    <div className="relative flex items-center">
-                      <div className="relative h-[3.125rem] w-[3.125rem] flex-none sm:h-[3.75rem] sm:w-[3.75rem]">
-                        <img
-                          className="absolute inset-0 h-full w-full rounded-full object-cover"
-                          src="https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Developer-Associate_badge.5c083fa855fe82c1cf2d0c8b883c265ec72a17c0.png"
-                          alt=""
-                        />
-                        <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-black/[0.08]" />
-                      </div>
-                      <dl className="ml-4 flex flex-auto flex-wrap gap-y-1 gap-x-2 overflow-hidden sm:ml-6 sm:grid sm:grid-cols-[auto_1fr_auto_auto] sm:items-center">
-                        <div className="col-span-2 mr-2.5 flex-none sm:mr-0">
-                          <dt className="sr-only">Host</dt>
-                          <dd className="text-xs font-semibold leading-6 text-gray-900">
-                            Amazon Web Service
-                          </dd>
-                        </div>
-                        <div className="col-start-3 row-start-2 -ml-2.5 flex-auto sm:ml-0 sm:pl-6">
-                          <dt className="sr-only">Category</dt>
-                          <dd className="flex items-center text-xs leading-6 text-gray-600">
-                            <StatusText value={history.successCd} />
-                          </dd>
-                        </div>
-                        <div className="col-span-2 col-start-1 w-full flex-none">
-                          <dt className="sr-only">Category</dt>
-                          <dd className="text-[0.9375rem] font-semibold leading-6 text-gray-900">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                if (isEmpty(history.successCd)) {
-                                  return handleContinueClick(history);
-                                }
-                                return handleReviewClick(history);
-                              }}
-                            >
-                              <span className="absolute -inset-x-4 inset-y-[calc(-1*(theme(spacing.6)+1px))] sm:-inset-x-6 sm:rounded-2xl lg:-inset-x-8" />
-                              {history.categoryNm}
-                            </button>
-                          </dd>
-                        </div>
-                        <div className="mr-2.5 flex-none">
-                          <dt className="sr-only">Progress</dt>
-                          <dd className="text-xs leading-6 text-gray-600">
-                            {`총 ${
-                              history.questionSet.length
-                            }문제 중 ${getProgressCnt(
-                              history.progressSet,
-                            )} 문제 완료`}
-                          </dd>
-                        </div>
-                        <div className="col-start-4 row-start-2 ml-auto flex-none sm:pl-6">
-                          <dt className="sr-only">Start</dt>
-                          <dd className="text-xs leading-6 text-gray-400">
-                            <time dateTime={history.start_dt}>
-                              {new Intl.DateTimeFormat('ko-KR', {
-                                weekday: 'long',
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric',
-                              }).format(new Date(history.startDt))}
-                            </time>
-                          </dd>
-                        </div>
-                      </dl>
-                    </div>
+    <div className="mt-8 space-y-4 sm:mt-10">
+      <ul className="divide-y divide-gray-100">
+        {histories.map(history => {
+          return (
+            <li key={history.id}>
+              <div className="group relative py-6 sm:rounded-2xl">
+                <div className="absolute -inset-x-4 -inset-y-px bg-gray-50 opacity-0 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl lg:-inset-x-8" />
+                <div className="relative flex items-center">
+                  <div className="relative h-[3.125rem] w-[3.125rem] flex-none sm:h-[3.75rem] sm:w-[3.75rem]">
+                    <img
+                      className="absolute inset-0 h-full w-full rounded-full object-cover"
+                      src="https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Developer-Associate_badge.5c083fa855fe82c1cf2d0c8b883c265ec72a17c0.png"
+                      alt=""
+                    />
+                    <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-black/[0.08]" />
                   </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </div>
+                  <dl className="ml-4 flex flex-auto flex-wrap gap-y-1 gap-x-2 overflow-hidden sm:ml-6 sm:grid sm:grid-cols-[auto_1fr_auto_auto] sm:items-center">
+                    <div className="col-span-2 mr-2.5 flex-none sm:mr-0">
+                      <dt className="sr-only">Host</dt>
+                      <dd className="text-xs font-semibold leading-6 text-gray-900">
+                        Amazon Web Service
+                      </dd>
+                    </div>
+                    <div className="col-start-3 row-start-2 -ml-2.5 sm:ml-0 sm:pl-6">
+                      <dt className="sr-only">Category</dt>
+                      <dd className="flex items-center text-xs leading-6 text-gray-600">
+                        <StatusText value={history.successCd} />
+                      </dd>
+                    </div>
+                    <div className="col-span-2 col-start-1 w-full flex-none">
+                      <dt className="sr-only">Category</dt>
+                      <dd className="text-[0.9375rem] font-semibold leading-6 text-gray-900">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (isEmpty(history.successCd)) {
+                              return handleContinueClick(history);
+                            }
+                            return handleReviewClick(history);
+                          }}
+                        >
+                          <span className="absolute -inset-x-4 inset-y-[calc(-1*(theme(spacing.6)+1px))] sm:-inset-x-6 sm:rounded-2xl lg:-inset-x-8" />
+                          {history.categoryNm}
+                        </button>
+                      </dd>
+                    </div>
+                    <div className="mr-2.5 flex-none">
+                      <dt className="sr-only">Progress</dt>
+                      <dd className="text-xs leading-6 text-gray-600">
+                        {`총 ${
+                          history.questionSet.length
+                        }문제 중 ${getProgressCnt(
+                          history.progressSet,
+                        )} 문제 완료`}
+                      </dd>
+                    </div>
+                    <div className="col-start-4 row-start-2 ml-auto flex-none sm:pl-6">
+                      <dt className="sr-only">Start</dt>
+                      <dd className="text-xs leading-6 text-gray-400">
+                        <time dateTime={history.start_dt}>
+                          {new Intl.DateTimeFormat('ko-KR', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          }).format(new Date(history.startDt))}
+                        </time>
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
       <IntroHeader />
     </div>
   );

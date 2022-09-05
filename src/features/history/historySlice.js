@@ -18,7 +18,6 @@ const historySlice = createSlice({
     successPer: null,
     totalQCnt: null,
     wrongCnt: null,
-    itemsRef: [],
   },
   reducers: {
     initHistory(state, action) {
@@ -35,7 +34,6 @@ const historySlice = createSlice({
       state.successPer = action.payload.success_per;
       state.totalQCnt = action.payload.total_q_cnt;
       state.wrongCnt = action.payload.wrong_cnt;
-      state.itemsRef = action.payload.itemsRef;
     },
   },
 });

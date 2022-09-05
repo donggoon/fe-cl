@@ -34,10 +34,8 @@ function QuestionOption({ type, option, handleChange }) {
       )} hover:bg-slate-50`}
       onClick={handleClick}
     >
-      <div className="flex justify-between">
-        <div className="w-[14.4rem] font-medium text-slate-900 lg:w-full">
-          {option.text}
-        </div>
+      <div className="flex items-center justify-between">
+        <div className="font-medium text-slate-900">{option.text}</div>
         <input id={option.seq} name={option.id} type="hidden" value={checked} />
         {option.correct ? (
           <StatusText value={option.correct_yn} />

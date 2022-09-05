@@ -8,7 +8,7 @@ function MainHeader() {
   return (
     <header id="header" className="relative z-20">
       <div>
-        <p className="mb-2 text-sm font-semibold leading-6 text-sky-500 dark:text-sky-400">
+        <p className="mb-2 text-sm font-semibold leading-6 text-indigo-600 dark:text-indigo-400">
           {menu.id}
         </p>
         <div className="flex items-center">

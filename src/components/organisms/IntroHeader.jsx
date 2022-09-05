@@ -3,24 +3,26 @@ import { Link } from 'react-router-dom';
 
 function IntroHeader() {
   return (
-    <header className="py-16 sm:text-center">
-      <h1 className="mb-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200 sm:text-4xl">
-        새 테스트
-      </h1>
-      <p className="text-lg text-slate-700 dark:text-slate-400">
-        아래 버튼을 클릭하여 새로운 테스트를 시작할 수 있습니다.
-      </p>
-      <section className="mt-3 max-w-sm sm:mx-auto sm:px-4">
-        <div className="mt-3 flex grow px-2">
-          <Link
-            to="../c"
-            className="flex-auto rounded-md border-y border-transparent bg-sky-500 py-2 px-3 text-sm font-semibold text-white shadow hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 dark:hover:bg-sky-400 dark:focus:ring-sky-700 dark:focus:ring-offset-slate-900"
-          >
-            시작하기
-          </Link>
+    <div className="rounded-md border-2 border-solid border-gray-200 bg-gray-50">
+      <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:flex lg:items-center lg:justify-between lg:py-16 lg:px-8">
+        <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-xl">
+          <span className="block">새 테스트를 시작하시나요?</span>
+          <span className="block text-indigo-600">
+            시작하기 버튼을 눌러 테스트를 시작하세요.
+          </span>
+        </h2>
+        <div className="mt-8 flex lg:mt-0 lg:shrink-0">
+          <div className="inline-flex rounded-md shadow">
+            <Link
+              to="../c"
+              className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-indigo-700"
+            >
+              시작하기
+            </Link>
+          </div>
         </div>
-      </section>
-    </header>
+      </div>
+    </div>
   );
 }
 

@@ -19,9 +19,11 @@ function MainFrame() {
   return (
     <div className="mx-auto max-w-8xl px-4 sm:px-6 md:px-8">
       <div
-        className={`mx-auto max-w-3xl pt-10 xl:ml-0 ${
-          isProcessing || isReviewing ? 'xl:mr-[15.5rem]' : ''
-        } xl:max-w-none xl:pr-16`}
+        className={`mx-auto max-w-3xl pt-10${
+          isProcessing || isReviewing
+            ? ' xl:mr-[15.5rem] xl:ml-0 xl:max-w-none xl:pr-16'
+            : ''
+        }`}
       >
         <MainHeader />
         {/* <div
