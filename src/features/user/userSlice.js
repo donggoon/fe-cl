@@ -5,16 +5,19 @@ import { createSlice } from '@reduxjs/toolkit';
 const userSlice = createSlice({
   name: 'users',
   initialState: {
-    id: '1',
+    adminYn: null,
+    id: null,
+    loginId: null,
+    name: null,
+    password: null,
   },
   reducers: {
     userLogin(state, action) {
-      state.id = action.payload;
-      // state.push({
-      //   id: action.payload,
-      //   text: action.payload.text,
-      //   completed: false,
-      // });
+      state.id = action.payload.id;
+      state.adminYn = action.payload.admin_yn;
+      state.loginId = action.payload.login_id;
+      state.name = action.payload.name;
+      state.password = action.payload.password;
     },
   },
 });

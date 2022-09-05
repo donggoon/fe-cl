@@ -1,7 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { userLogin } from '../../../features/user/userSlice';
 
 function HeaderFrame() {
+  const dispatch = useDispatch();
+
+  const handleLogout = e => {
+    e.preventDefault();
+    console.log('logout');
+    dispatch(userLogin({}));
+  };
   return (
     <div className="supports-backdrop-blur:bg-white/60 sticky top-0 z-40 w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 dark:border-slate-50/[0.06] dark:bg-transparent lg:z-50 lg:border-b lg:border-slate-900/10">
       <div className="mx-auto max-w-8xl">
@@ -24,16 +33,16 @@ function HeaderFrame() {
                       Category
                     </li>
                   </Link>
-                  <Link to="login">
-                    <li className="hover:text-sky-500 dark:hover:text-sky-400">
-                      Login
-                    </li>
-                  </Link>
                   <a href="http://43.200.138.19:9002/">
                     <li className="hover:text-sky-500 dark:hover:text-sky-400">
                       Admin
                     </li>
                   </a>
+                  <button type="button" onClick={handleLogout}>
+                    <li className="hover:text-sky-500 dark:hover:text-sky-400">
+                      Logout
+                    </li>
+                  </button>
                 </ul>
               </nav>
               <div className="ml-6 flex items-center border-l border-slate-200 pl-6 dark:border-slate-800">

@@ -16,7 +16,7 @@ function Main() {
     if (isEmpty(user.id)) {
       return navigate('/login');
     }
-  }, []);
+  }, [user.id]);
 
   return (
     <>

@@ -1,15 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import StatusText from '../atoms/StatusText';
 
 function ReviewSider() {
-  const quiz = useSelector(state => state.quiz);
-  const { id } = useParams();
+  const history = useSelector(state => state.history);
 
-  const handleClick = (e, questionNumber) => {
+  const handleScroll = (e, ref) => {
     e.preventDefault();
-    console.log('questionNumber', questionNumber);
+    window.scrollTo({
+      top: ref.offsetTop,
+      left: 0,
+      behavior: 'smooth',
+    });
   };
 
   return (
@@ -18,22 +20,24 @@ function ReviewSider() {
         바로가기
       </h5>
       <ul className="text-sm leading-6 text-slate-700">
-        {quiz.questionSet.map((questionNumber, index) => {
+        {history.resultDetails.map((resultDetail, index) => {
+          const { question } = resultDetail;
           return (
             <li>
               <button
                 type="button"
-                name={questionNumber}
+                name={question.id}
                 className={`py-1 font-medium ${
-                  id === questionNumber
-                    ? 'text-sky-500 dark:text-sky-400'
-                    : 'hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
+                  // id === question.id
+                  // ? 'text-sky-500 dark:text-sky-400'
+                  // : 'hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
+                  'hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
                 }`}
-                onClick={e => handleClick(e, questionNumber)}
+                onClick={e => handleScroll(e, resultDetail.ref)}
               >
-                {`질문 ${index + 1}` /* TODO seq 값으로 변경 */}
+                {`질문 ${index + 1}`}
               </button>
-              <StatusText value={quiz.correctSet[index]} />
+              <StatusText value={question.correct_yn} />
             </li>
           );
         })}

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { initHistory } from '../../features/history/historySlice';
 
 import { menuChanged } from '../../features/menu/menuSlice';
 
@@ -8,7 +9,6 @@ import { callApi } from '../../functions/commonUtil';
 import Divider from '../atoms/Divider';
 import QutestionImage from '../atoms/QuestionImage';
 import QuestionTitle from '../atoms/QuestionTitle';
-import StatusText from '../atoms/StatusText';
 import QuestionOptionGroup from '../organisms/QuestionOptionGroup';
 
 function Review() {
@@ -17,6 +17,7 @@ function Review() {
   const [history, setHistory] = useState({
     resultDetails: [],
   });
+  const itemsRef = useRef([]);
 
   const getFormattedOptions = options => {
     return options.map(option => {
@@ -39,7 +40,19 @@ function Review() {
 
     callApi('get', `/u/his/${id}`)
       .then(response => {
-        setHistory(response.data);
+        const payload = {
+          ...response.data,
+          resultDetails: response.data.resultDetails.map(
+            (resultDetail, index) => {
+              return {
+                ...resultDetail,
+                ref: itemsRef.current[index],
+              };
+            },
+          ),
+        };
+        dispatch(initHistory(payload));
+        setHistory(payload);
       })
       .catch(err => {
         console.log(err);
@@ -52,13 +65,16 @@ function Review() {
       <div
         className="mb-6 overflow-hidden shadow sm:rounded-md"
         key={question.id}
+        ref={ref => {
+          itemsRef.current = { ...itemsRef.current, [index]: ref };
+        }}
       >
         <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
           <div className="space-y-2">
-            <StatusText value={question.correct_yn} />
             <QuestionTitle
-              seq={index + 1 /* TODO seq 값으로 변경 */}
+              seq={index + 1}
               text={question.text}
+              status={question.correct_yn}
             >
               <QutestionImage src={question.image} />
             </QuestionTitle>

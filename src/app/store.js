@@ -16,6 +16,7 @@ import storage from 'redux-persist/lib/storage';
 import userReducer from '../features/user/userSlice';
 import menuReducer from '../features/menu/menuSlice';
 import quizReducer from '../features/quiz/quizSlice';
+import historyReducer from '../features/history/historySlice';
 
 const persistConfig = {
   key: 'root',
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   menu: menuReducer,
   quiz: quizReducer,
+  history: historyReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

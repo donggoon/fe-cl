@@ -1,12 +1,10 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-// import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 
 import { menuChanged } from '../../features/menu/menuSlice';
-import { initQuiz, setProgressSet } from '../../features/quiz/quizSlice';
+import { initQuiz } from '../../features/quiz/quizSlice';
 
 import {
   callApi,
@@ -32,7 +30,6 @@ function Category() {
 
     callApi('get', '/q/category')
       .then(response => {
-        console.log(response.data);
         setCategories(response.data);
       })
       .catch(err => {

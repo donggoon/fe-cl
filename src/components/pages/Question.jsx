@@ -52,7 +52,8 @@ function Question() {
   };
 
   useEffect(() => {
-    if (isEmpty(quiz.id)) {
+    console.log(quiz.successCd);
+    if (isEmpty(quiz.id) || !isEmpty(quiz.successCd)) {
       navigate('../../c');
     }
 
@@ -82,7 +83,6 @@ function Question() {
       return;
     }
     const formData = new FormData(target);
-    console.log('formData', formData);
     const answerSet = [...quiz.answerSet];
     const progressSet = [...quiz.progressSet];
 
@@ -110,7 +110,6 @@ function Question() {
     if (targetIndex > lastIndex) {
       for (let i = 0; i < progressSet.length; i += 1) {
         if (String(progressSet[i]) === '0') {
-          // TODO seq 값으로 변경
           alert(`질문 ${i + 1}번이 완료되지 않았습니다.`);
           return;
         }
@@ -132,6 +131,7 @@ function Question() {
             successCd: response.data.success_cd,
             userId: response.data.user_id,
           };
+          console.log('payload', payload);
           dispatch(initQuiz(payload));
           navigate(`../../r/${quiz.id}`);
         })
@@ -171,7 +171,6 @@ function Question() {
         <Divider padding="1" />
         <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
           <QuestionTitle
-            // TODO seq 값으로 변경
             seq={quiz.questionSet.indexOf(id) + 1}
             text={question.text}
           >
@@ -185,8 +184,8 @@ function Question() {
           />
         </div>
         <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
-          <SubmitButton name="previous">Previous</SubmitButton>
-          <SubmitButton name="next">Next</SubmitButton>
+          <SubmitButton name="previous">뒤로</SubmitButton>
+          <SubmitButton name="next">다음</SubmitButton>
         </div>
       </div>
     </form>

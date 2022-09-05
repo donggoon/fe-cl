@@ -67,7 +67,6 @@ export const getFormattedAnswer = entries => {
   let formattedAnswer = '';
   // eslint-disable-next-line no-restricted-syntax
   for (const [key, value] of entries) {
-    console.log('key:', key, ', value:', value);
     if (value === 'true') {
       formattedAnswer += `${key}:`;
     }
@@ -125,6 +124,8 @@ export const getStatusText = value => {
       return '건너뜀';
     case 'S':
       return '완료됨';
+    case 'F':
+      return '완료됨';
     case 'Y':
       return '정답';
     case 'N':
@@ -141,6 +142,8 @@ export const getStatusStyle = value => {
     case '1':
       return 'dark:highlight-white/5 bg-slate-400/20';
     case 'S':
+      return 'bg-sky-500 text-white';
+    case 'F':
       return 'bg-sky-500 text-white';
     case 'Y':
       return 'bg-indigo-500 text-white';
