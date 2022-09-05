@@ -1,9 +1,14 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { menuChanged } from '../../features/menu/menuSlice';
-import { callApi, getFormattedQuizInfo } from '../../functions/commonUtil';
+import {
+  callApi,
+  getFormattedQuizInfo,
+  isEmpty,
+} from '../../functions/commonUtil';
 
 import { initQuiz } from '../../features/quiz/quizSlice';
 import StatusText from '../atoms/StatusText';
@@ -59,68 +64,87 @@ function Intro() {
   };
 
   return (
-    <div className="space-y-16">
-      <IntroHeader />
-      <div className="relative py-6 sm:ml-[calc(2rem+1px)] sm:pb-12 md:ml-[calc(3.5rem+1px)] lg:ml-[max(calc(14.5rem+1px),calc(100%-48rem))]">
-        <div className="absolute top-3 bottom-0 right-full mr-7 hidden w-px bg-slate-200 dark:bg-slate-800 sm:block md:mr-[3.25rem]" />
-        <div className="space-y-16">
-          {histories.map(history => {
-            return (
-              <article key={history.id} className="group relative">
-                <div className="absolute -inset-y-2.5 -inset-x-4 group-hover:bg-slate-50/70 dark:group-hover:bg-slate-800/50 sm:rounded-2xl md:-inset-y-4 md:-inset-x-6" />
-                <svg
-                  viewBox="0 0 9 9"
-                  className="absolute right-full top-2 mr-6 hidden h-[calc(0.5rem+1px)] w-[calc(0.5rem+1px)] overflow-visible text-slate-200 dark:text-slate-600 sm:block md:mr-12"
-                >
-                  <circle
-                    cx="4.5"
-                    cy="4.5"
-                    r="4.5"
-                    stroke="currentColor"
-                    className="fill-white dark:fill-slate-900"
-                    strokeWidth="2"
-                  />
-                </svg>
-                <div className="relative">
-                  <h3 className="pt-8 text-base font-semibold tracking-tight text-slate-900 dark:text-slate-200 lg:pt-0">
-                    {history.categoryNm}
-                    <StatusText value={history.successCd} />
-                  </h3>
-                  <div className="prose prose-slate prose-a:relative prose-a:z-10 dark:prose-dark line-clamp-2 mt-2 mb-4">
-                    <p>{`총 ${
-                      history.questionSet.length
-                    }문제 중 ${getProgressCnt(
-                      history.progressSet,
-                    )} 문제 완료`}</p>
+    <div>
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[37rem] lg:max-w-[50rem]">
+          <ul className="divide-y divide-gray-100">
+            {histories.map(history => {
+              return (
+                <li key={history.id}>
+                  <div className="group relative py-6 sm:rounded-2xl">
+                    <div className="absolute -inset-x-4 -inset-y-px bg-gray-50 opacity-0 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl lg:-inset-x-8" />
+                    <div className="relative flex items-center">
+                      <div className="relative h-[3.125rem] w-[3.125rem] flex-none sm:h-[3.75rem] sm:w-[3.75rem]">
+                        <img
+                          className="absolute inset-0 h-full w-full rounded-full object-cover"
+                          src="https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Developer-Associate_badge.5c083fa855fe82c1cf2d0c8b883c265ec72a17c0.png"
+                          alt=""
+                        />
+                        <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-black/[0.08]" />
+                      </div>
+                      <dl className="ml-4 flex flex-auto flex-wrap gap-y-1 gap-x-2 overflow-hidden sm:ml-6 sm:grid sm:grid-cols-[auto_1fr_auto_auto] sm:items-center">
+                        <div className="col-span-2 mr-2.5 flex-none sm:mr-0">
+                          <dt className="sr-only">Host</dt>
+                          <dd className="text-xs font-semibold leading-6 text-gray-900">
+                            Amazon Web Service
+                          </dd>
+                        </div>
+                        <div className="col-start-3 row-start-2 -ml-2.5 flex-auto sm:ml-0 sm:pl-6">
+                          <dt className="sr-only">Category</dt>
+                          <dd className="flex items-center text-xs leading-6 text-gray-600">
+                            <StatusText value={history.successCd} />
+                          </dd>
+                        </div>
+                        <div className="col-span-2 col-start-1 w-full flex-none">
+                          <dt className="sr-only">Category</dt>
+                          <dd className="text-[0.9375rem] font-semibold leading-6 text-gray-900">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (isEmpty(history.successCd)) {
+                                  return handleContinueClick(history);
+                                }
+                                return handleReviewClick(history);
+                              }}
+                            >
+                              <span className="absolute -inset-x-4 inset-y-[calc(-1*(theme(spacing.6)+1px))] sm:-inset-x-6 sm:rounded-2xl lg:-inset-x-8" />
+                              {history.categoryNm}
+                            </button>
+                          </dd>
+                        </div>
+                        <div className="mr-2.5 flex-none">
+                          <dt className="sr-only">Progress</dt>
+                          <dd className="text-xs leading-6 text-gray-600">
+                            {`총 ${
+                              history.questionSet.length
+                            }문제 중 ${getProgressCnt(
+                              history.progressSet,
+                            )} 문제 완료`}
+                          </dd>
+                        </div>
+                        <div className="col-start-4 row-start-2 ml-auto flex-none sm:pl-6">
+                          <dt className="sr-only">Start</dt>
+                          <dd className="text-xs leading-6 text-gray-400">
+                            <time dateTime={history.start_dt}>
+                              {new Intl.DateTimeFormat('ko-KR', {
+                                weekday: 'long',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                              }).format(new Date(history.startDt))}
+                            </time>
+                          </dd>
+                        </div>
+                      </dl>
+                    </div>
                   </div>
-                  <dl className="absolute left-0 top-0 lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)]">
-                    <dt className="sr-only">Date</dt>
-                    <dd className="whitespace-nowrap text-sm leading-6 dark:text-slate-400">
-                      <time dateTime={history.start_dt}>
-                        {new Intl.DateTimeFormat('ko-KR', {
-                          weekday: 'long',
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        }).format(new Date(history.startDt))}
-                      </time>
-                    </dd>
-                  </dl>
-                </div>
-                {history.successCd !== 'S' ? (
-                  <AnchorButton onClick={() => handleContinueClick(history)}>
-                    계속하기
-                  </AnchorButton>
-                ) : (
-                  <AnchorButton onClick={() => handleReviewClick(history)}>
-                    검토하기
-                  </AnchorButton>
-                )}
-              </article>
-            );
-          })}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
+      <IntroHeader />
     </div>
   );
 }

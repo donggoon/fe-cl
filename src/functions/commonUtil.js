@@ -123,9 +123,9 @@ export const getStatusText = value => {
     case '1':
       return '건너뜀';
     case 'S':
-      return '완료됨';
+      return '합격';
     case 'F':
-      return '완료됨';
+      return '불합격';
     case 'Y':
       return '정답';
     case 'N':
@@ -142,9 +142,9 @@ export const getStatusStyle = value => {
     case '1':
       return 'dark:highlight-white/5 bg-slate-400/20';
     case 'S':
-      return 'bg-sky-500 text-white';
+      return 'bg-indigo-500 text-white';
     case 'F':
-      return 'bg-sky-500 text-white';
+      return 'bg-red-500 text-white';
     case 'Y':
       return 'bg-indigo-500 text-white';
     case 'N':

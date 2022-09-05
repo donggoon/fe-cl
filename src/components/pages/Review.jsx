@@ -42,14 +42,7 @@ function Review() {
       .then(response => {
         const payload = {
           ...response.data,
-          resultDetails: response.data.resultDetails.map(
-            (resultDetail, index) => {
-              return {
-                ...resultDetail,
-                ref: itemsRef.current[index],
-              };
-            },
-          ),
+          itemsRef: String(itemsRef.current),
         };
         dispatch(initHistory(payload));
         setHistory(payload);

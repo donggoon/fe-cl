@@ -30,7 +30,7 @@ function HeaderFrame() {
                 <ul className="flex space-x-8">
                   <Link to="c">
                     <li className="hover:text-sky-500 dark:hover:text-sky-400">
-                      Category
+                      New
                     </li>
                   </Link>
                   <a href="http://43.200.138.19:9002/">

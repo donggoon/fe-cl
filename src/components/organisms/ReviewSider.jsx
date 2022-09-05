@@ -23,7 +23,7 @@ function ReviewSider() {
         {history.resultDetails.map((resultDetail, index) => {
           const { question } = resultDetail;
           return (
-            <li>
+            <li key={question.id}>
               <button
                 type="button"
                 name={question.id}
@@ -33,7 +33,7 @@ function ReviewSider() {
                   // : 'hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
                   'hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
                 }`}
-                onClick={e => handleScroll(e, resultDetail.ref)}
+                onClick={e => handleScroll(e, history.itemsRef[index])}
               >
                 {`질문 ${index + 1}`}
               </button>

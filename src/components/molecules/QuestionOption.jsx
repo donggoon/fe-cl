@@ -35,7 +35,9 @@ function QuestionOption({ type, option, handleChange }) {
       onClick={handleClick}
     >
       <div className="flex justify-between">
-        <div className="font-medium text-slate-900">{option.text}</div>
+        <div className="w-[14.4rem] font-medium text-slate-900 lg:w-full">
+          {option.text}
+        </div>
         <input id={option.seq} name={option.id} type="hidden" value={checked} />
         {option.correct ? (
           <StatusText value={option.correct_yn} />

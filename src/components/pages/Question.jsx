@@ -53,9 +53,12 @@ function Question() {
 
   useEffect(() => {
     console.log(quiz.successCd);
-    if (isEmpty(quiz.id) || !isEmpty(quiz.successCd)) {
+    if (isEmpty(quiz.id)) {
       navigate('../../c');
     }
+    // if (!isEmpty(quiz.successCd)) {
+    //   navigate(`../../r/${quiz.id}`);
+    // }
 
     dispatch(
       menuChanged({
