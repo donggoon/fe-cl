@@ -53,9 +53,7 @@ function Intro() {
   const handleContinueClick = history => {
     dispatch(initQuiz(history));
 
-    const continueIndex = history.progressSet.findIndex(
-      value => value === '0' || value === '1',
-    );
+    const continueIndex = history.progressSet.findIndex(value => value === '0');
 
     if (continueIndex < 0) navigate(`/q/${history.questionSet[0]}`);
     else navigate(`/q/${history.questionSet[continueIndex]}`);
@@ -80,7 +78,7 @@ function Intro() {
                       src={history.logoUrl}
                       alt=""
                     />
-                    <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-black/[0.08]" />
+                    <div className="absolute inset-0 rounded-full ring-0 ring-inset ring-black/[0.08]" />
                   </div>
                   <dl className="ml-4 flex flex-auto flex-wrap gap-y-1 gap-x-2 overflow-hidden sm:ml-6 sm:grid sm:grid-cols-[auto_1fr_auto_auto] sm:items-center">
                     <div className="col-span-2 mr-2.5 flex-none sm:mr-0">

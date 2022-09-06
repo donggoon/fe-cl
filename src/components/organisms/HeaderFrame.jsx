@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { userLogin } from '../../features/user/userSlice';
+import HeaderNav from './HeaderNav';
 
 function HeaderFrame() {
   const dispatch = useDispatch();
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   const handleLogout = e => {
     e.preventDefault();
-    console.log('logout');
     dispatch(userLogin({}));
   };
   return (
-    <div className="supports-backdrop-blur:bg-white/60 sticky top-0 z-40 w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10">
+    <div className="sticky top-0 z-40 w-full flex-none bg-white/95 transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10">
       <div className="mx-auto max-w-8xl">
         <div className="mx-4 border-b border-slate-900/10 py-4 lg:mx-0 lg:border-0 lg:px-8">
           <div className="relative flex items-center">
@@ -61,6 +62,9 @@ function HeaderFrame() {
               <button
                 type="button"
                 className="flex h-8 w-8 items-center justify-center text-slate-500 hover:text-slate-600"
+                onClick={() => {
+                  setIsNavOpen(true);
+                }}
               >
                 <span className="sr-only">Navigation</span>
                 <svg width="24" height="24" fill="none" aria-hidden="true">
@@ -77,6 +81,7 @@ function HeaderFrame() {
           </div>
         </div>
       </div>
+      <HeaderNav isOpen={isNavOpen} setIsOpen={setIsNavOpen} />
     </div>
   );
 }
