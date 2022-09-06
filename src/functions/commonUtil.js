@@ -142,13 +142,13 @@ export const getStatusStyle = value => {
     case '1':
       return 'dark:highlight-white/5 bg-slate-400/20';
     case 'S':
-      return 'bg-indigo-500 text-white';
+      return 'bg-indigo-600 text-white';
     case 'F':
-      return 'bg-red-500 text-white';
+      return 'bg-rose-600 text-white';
     case 'Y':
-      return 'bg-indigo-500 text-white';
+      return 'bg-indigo-600 text-white';
     case 'N':
-      return 'bg-red-500 text-white';
+      return 'bg-rose-600 text-white';
     default:
       return 'dark:highlight-white/5 bg-slate-400/20';
   }
@@ -158,13 +158,13 @@ export const getOptionColor = (checked, correct) => {
   // if (correct && checked) {
   //   return 'rgb(99 102 241)';
   // }
+  // 미채점
+  if (isEmpty(correct) && checked) {
+    return 'rgb(79 70 229)';
+  }
   // 오답
   if (!correct && checked) {
     return 'rgb(256 256 256)';
-  }
-  // 미채점
-  if (isEmpty(correct) && checked) {
-    return 'rgb(99 102 241)';
   }
   // 오답 시 정답 표기
   // if (correct && !checked) {
@@ -176,15 +176,15 @@ export const getOptionColor = (checked, correct) => {
 export const getOptionStyle = (checked, correct) => {
   // 정답
   if (correct && checked) {
-    return 'ring-2 ring-indigo-500';
+    return 'ring-2 ring-indigo-600';
   }
   // 오답
   if (!correct && checked) {
-    return 'ring-2 ring-indigo-500';
+    return 'ring-2 ring-indigo-600';
   }
   // 미채점
   if (isEmpty(correct) && checked) {
-    return 'ring-2 ring-indigo-500';
+    return 'ring-2 ring-indigo-600';
   }
   // 오답 시 정답 표기
   // if (correct && !checked) {

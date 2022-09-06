@@ -73,101 +73,74 @@ function Review() {
 
   return (
     <div>
-      <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
+      <div className="mx-auto max-w-2xl px-4 pt-5 pb-8 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-8 lg:pb-12">
         <div className="flex items-center lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-          <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-            {history.category_nm}
-          </h1>
+          <h3 className="text-lg font-semibold leading-6 text-gray-900">
+            {`${history.category_nm} 결과`}
+          </h3>
           <StatusText value={history.success_cd} />
         </div>
         <div className="mt-4 lg:row-span-3 lg:mt-0">
           <Chart history={history} />
         </div>
-
-        <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pb-16 lg:pr-8">
-          <div className="mt-10">
-            <h3 className="text-sm font-medium text-gray-900">요약</h3>
-
-            <div className="mt-4">
-              <ul className="list-disc space-y-2 pl-4 text-sm">
-                <li className="text-gray-400">
-                  <span className="text-gray-600">
-                    {`합격 기준 : ${history.success_per}% 정답`}
+        <div className="py-5 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-3 lg:pb-8 lg:pr-4">
+          <p className="mb-2 text-sm font-semibold leading-6 text-indigo-600 dark:text-indigo-400">{`${history.total_q_cnt}개의 질문  |  2시간  |  합격하려면 ${history.success_per}%의 정답을 달성해야함`}</p>
+          <div className="mt-4">
+            <ul className="list-disc space-y-2 pl-4 text-xl">
+              {String(history.success_cd) === 'F' ? (
+                <li className="text-rose-600">
+                  <span>
+                    {`합격하려면 ${history.success_per}%를 달성해야 함`}
                   </span>
                 </li>
-
-                <li className="text-gray-400">
-                  <span className="text-gray-600">
-                    {`내 결과 : ${history.correct_per}% 정답 (${history.correct_cnt}/${history.total_q_cnt})`}
-                  </span>
-                </li>
-
-                <li className="text-gray-400">
-                  <span className="text-gray-600">
-                    {`테스트 시간 : ${history.start_dt} ~ ${history.end_dt}`}
-                  </span>
-                </li>
-              </ul>
-            </div>
+              ) : null}
+              <li className="text-slate-700">
+                <span className="text-3xl font-extrabold text-slate-900">
+                  {`${history.correct_per}% `}
+                </span>
+                <span className="text-slate-900">
+                  {`정답 (${history.correct_cnt}/${history.total_q_cnt})`}
+                </span>
+              </li>
+              <li className="text-slate-700">
+                <span className="text-slate-900">1시간 52분</span>
+              </li>
+              <li className="text-slate-700">
+                <span className="text-slate-900">{history.end_dt}</span>
+              </li>
+            </ul>
           </div>
-          {/* <div className="mt-10">
-            <button
-              type="button"
-              className="group inline-flex h-9 items-center whitespace-nowrap rounded-full bg-indigo-50 px-3 text-sm font-semibold text-indigo-600 hover:bg-indigo-200 hover:text-indigo-700 focus:ring-2 focus:ring-indigo-500 dark:bg-slate-700 dark:text-slate-100 dark:hover:bg-slate-600 dark:hover:text-white dark:focus:ring-slate-500"
-              onClick={() => {
-                setIsOpen(!isOpen);
-              }}
-            >
-              검토하기
-              <span className="sr-only">, utility-first fundamentals</span>
-              <svg
-                className="ml-3 overflow-visible text-indigo-300 group-hover:text-indigo-400 dark:text-slate-500 dark:group-hover:text-slate-400"
-                width="3"
-                height="6"
-                viewBox="0 0 3 6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M0 0L3 3L0 6" />
-              </svg>
-            </button>
-          </div> */}
         </div>
       </div>
-      {isOpen
-        ? history.resultDetails.map((resultDetail, index) => {
-            const { question, options } = resultDetail;
-            return (
-              <div
-                className="mb-6 overflow-hidden shadow sm:rounded-md"
-                key={question.id}
-                ref={ref => {
-                  itemsRef.current = { ...itemsRef.current, [index]: ref };
-                }}
-              >
-                <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
-                  <div className="space-y-2">
-                    <QuestionTitle
-                      seq={index + 1}
-                      text={question.text}
-                      status={question.correct_yn}
-                    >
-                      <QutestionImage src={question.image} />
-                    </QuestionTitle>
-                    <Divider padding="1" />
-                    <QuestionOptionGroup
-                      type={question.type}
-                      options={getFormattedOptions(options)}
-                    />
-                  </div>
-                </div>
+      {history.resultDetails.map((resultDetail, index) => {
+        const { question, options } = resultDetail;
+        return (
+          <div
+            className="mb-6 overflow-hidden shadow sm:rounded-md"
+            key={question.id}
+            ref={ref => {
+              itemsRef.current = { ...itemsRef.current, [index]: ref };
+            }}
+          >
+            <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+              <div className="space-y-2">
+                <QuestionTitle
+                  seq={index + 1}
+                  text={question.text}
+                  status={question.correct_yn}
+                >
+                  <QutestionImage src={question.image} />
+                </QuestionTitle>
+                <Divider padding="1" />
+                <QuestionOptionGroup
+                  type={question.type}
+                  options={getFormattedOptions(options)}
+                />
               </div>
-            );
-          })
-        : null}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
