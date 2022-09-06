@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Divider(padding) {
+function Divider(padding = 1) {
   return (
     <div className="hidden sm:block" aria-hidden="true">
       <div className={`py-${padding}`}>

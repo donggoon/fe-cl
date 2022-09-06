@@ -89,6 +89,7 @@ export const getFormattedQuizInfo = data => {
     startDt: data.start_dt,
     successCd: data.success_cd,
     userId: data.user_id,
+    logoUrl: data.logo_url,
   };
 };
 
@@ -138,9 +139,9 @@ export const getStatusText = value => {
 export const getStatusStyle = value => {
   switch (String(value)) {
     case '2':
-      return 'bg-sky-400/10 text-sky-600 dark:text-sky-400';
+      return 'bg-sky-400/10 text-sky-600';
     case '1':
-      return 'dark:highlight-white/5 bg-slate-400/20';
+      return 'bg-slate-400/20';
     case 'S':
       return 'bg-indigo-600 text-white';
     case 'F':
@@ -150,7 +151,7 @@ export const getStatusStyle = value => {
     case 'N':
       return 'bg-rose-600 text-white';
     default:
-      return 'dark:highlight-white/5 bg-slate-400/20';
+      return 'bg-slate-400/20';
   }
 };
 export const getOptionColor = (checked, correct) => {

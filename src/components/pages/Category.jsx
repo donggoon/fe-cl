@@ -67,30 +67,32 @@ function Category() {
       {categories.map(category => (
         <li
           key={category.id}
-          className="-mx-4 flex flex-col-reverse items-start bg-slate-50 p-4 pb-10 dark:bg-slate-800/50 sm:mx-0 sm:rounded-2xl sm:p-10 xl:flex-row"
+          className="-mx-4 flex flex-col-reverse items-start bg-slate-50 p-4 pb-10 sm:mx-0 sm:rounded-2xl sm:p-10 xl:flex-row"
         >
           <div className="flex-auto">
-            {/* <h3 className="mb-4 text-sm font-semibold leading-6 text-blue-500">
-              parent category
-            </h3> */}
-            <p className="mb-2 text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-200">
+            <h3 className="mb-4 text-sm font-semibold leading-6 text-indigo-600">
+              {category.name.includes('AWS')
+                ? 'Amazon Web Service'
+                : '한국데이터진흥원'}
+            </h3>
+            <p className="mb-2 text-xl font-semibold tracking-tight text-slate-900">
               {category.name}
             </p>
-            <div className="mb-6 space-y-4 text-sm leading-6 text-slate-600 dark:text-slate-400">
+            <div className="mb-6 space-y-4 text-sm leading-6 text-slate-600">
               <p>
                 {`총 ${category.question_cnt} 문항 중 ${category.success_percent}% 합격`}
               </p>
               <p>{category.description}</p>
             </div>
             <button
-              className="group inline-flex h-9 items-center whitespace-nowrap rounded-full bg-slate-700 px-3 text-sm font-semibold text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 dark:bg-slate-700 dark:text-slate-100 dark:hover:bg-slate-600 dark:hover:text-white dark:focus:ring-slate-500 dark:focus:ring-offset-0"
+              className="group inline-flex h-9 items-center whitespace-nowrap rounded-full bg-slate-700 px-3 text-sm font-semibold text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
               // to="../q"
               type="button"
               onClick={() => handleClick(category)}
             >
               시험보기
               <svg
-                className="ml-3 overflow-visible text-slate-300 group-hover:text-slate-200 dark:text-slate-500 dark:group-hover:text-slate-400"
+                className="ml-3 overflow-visible text-slate-300 group-hover:text-slate-200"
                 width="3"
                 height="6"
                 viewBox="0 0 3 6"
@@ -105,7 +107,7 @@ function Category() {
             </button>
           </div>
           <div className="mb-10 w-full flex-none xl:mb-0 xl:ml-8 xl:w-[29rem]">
-            <div className="aspect-w-[1216] aspect-h-[606] sm:aspect-w-[1376] sm:aspect-h-[664] overflow-hidden rounded-lg bg-slate-100 shadow-lg dark:bg-slate-800">
+            <div className="aspect-w-[1216] aspect-h-[606] sm:aspect-w-[1376] sm:aspect-h-[664] overflow-hidden rounded-lg bg-slate-100 shadow-lg">
               <picture>
                 <source
                   type="image/jpeg"

@@ -11,7 +11,7 @@ function AnchorButton({ name, onClick, children }) {
       <span className="absolute -inset-y-2.5 -inset-x-4 sm:rounded-2xl md:-inset-y-4 md:-inset-x-6" />
       <span className="relative">{children}</span>
       <svg
-        className="relative mt-px ml-2.5 overflow-visible text-sky-300 dark:text-sky-700"
+        className="relative mt-px ml-2.5 overflow-visible text-sky-300"
         width="3"
         height="6"
         viewBox="0 0 3 6"

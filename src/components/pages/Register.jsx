@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { callApi } from '../../functions/commonUtil';
-import HeaderFrame from '../organisms/frames/HeaderFrame';
+import HeaderFrame from '../organisms/HeaderFrame';
 
 function Register() {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ function Register() {
         <div className="relative flex flex-1 flex-col items-center justify-center pt-12 pb-16">
           <a className="mx-auto mb-16 h-6 w-auto text-slate-900" href="/">
             <span className="sr-only">QUIZ home page</span>
-            <h1 className="inline-block text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200 sm:text-3xl">
+            <h1 className="inline-block text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
               Register
             </h1>
           </a>

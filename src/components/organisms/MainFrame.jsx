@@ -2,11 +2,11 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import MainFooter from '../MainFooter';
-import MainHeader from '../MainHeader';
-import QuestionSider from '../QuestionSider';
-import ReviewSider from '../ReviewSider';
-import { isEmpty } from '../../../functions/commonUtil';
+import MainFooter from './MainFooter';
+import MainHeader from './MainHeader';
+import QuestionSider from './QuestionSider';
+import ReviewSider from './ReviewSider';
+import { isEmpty } from '../../functions/commonUtil';
 
 function MainFrame() {
   const menu = useSelector(state => state.menu);
@@ -26,10 +26,6 @@ function MainFrame() {
         }`}
       >
         <MainHeader />
-        {/* <div
-          id="content-wrapper"
-          className="prose prose-slate dark:prose-dark relative z-20 mt-8"
-        > */}
         <div
           id="content-wrapper"
           className="prose prose-slate relative z-20 mt-8"

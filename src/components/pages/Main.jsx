@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import HeaderFrame from '../organisms/frames/HeaderFrame';
-import MainFrame from '../organisms/frames/MainFrame';
+import HeaderFrame from '../organisms/HeaderFrame';
+import MainFrame from '../organisms/MainFrame';
 
 import { isEmpty } from '../../functions/commonUtil';
 

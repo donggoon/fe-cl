@@ -39,11 +39,11 @@ function Login() {
   };
 
   return (
-    <main className="relative flex flex-1 flex-col overflow-hidden py-8 px-4 sm:px-6 lg:px-8">
+    <main className="relative flex h-screen flex-1 flex-col overflow-hidden py-8 px-4 sm:px-6 lg:px-8">
       <div className="relative flex flex-1 flex-col items-center justify-center pt-12 pb-16">
         <a className="mx-auto mb-16 h-6 w-auto text-slate-900" href="/">
           <span className="sr-only">QUIZ home page</span>
-          <h1 className="inline-block text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200 sm:text-3xl">
+          <h1 className="inline-block text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
             QUIZ
           </h1>
         </a>
@@ -85,11 +85,6 @@ function Login() {
           >
             <span>로그인</span>
           </button>
-          <p className="mt-8 text-center">
-            <a href="/password/reset" className="text-sm hover:underline">
-              비밀번호를 잊어버리셨나요?
-            </a>
-          </p>
         </form>
       </div>
       <footer className="relative shrink-0">

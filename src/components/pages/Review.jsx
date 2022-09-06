@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -11,8 +10,8 @@ import Divider from '../atoms/Divider';
 import QutestionImage from '../atoms/QuestionImage';
 import QuestionTitle from '../atoms/QuestionTitle';
 import StatusText from '../atoms/StatusText';
-import Chart from '../organisms/Chart';
-import QuestionOptionGroup from '../organisms/QuestionOptionGroup';
+import Chart from '../molecules/Chart';
+import QuestionOptionGroup from '../molecules/QuestionOptionGroup';
 
 function Review() {
   const dispatch = useDispatch();
@@ -20,7 +19,6 @@ function Review() {
   const [history, setHistory] = useState({
     resultDetails: [],
   });
-  const [isOpen, setIsOpen] = useState(false);
   const itemsRef = useRef([]);
 
   const getFormattedOptions = options => {
@@ -84,7 +82,7 @@ function Review() {
           <Chart history={history} />
         </div>
         <div className="py-5 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-3 lg:pb-8 lg:pr-4">
-          <p className="mb-2 text-sm font-semibold leading-6 text-indigo-600 dark:text-indigo-400">{`${history.total_q_cnt}개의 질문  |  2시간  |  합격하려면 ${history.success_per}%의 정답을 달성해야함`}</p>
+          <p className="mb-2 text-sm font-semibold leading-6 text-indigo-600">{`${history.total_q_cnt}개의 질문  |  2시간  |  합격하려면 ${history.success_per}%의 정답을 달성해야함`}</p>
           <div className="mt-4">
             <ul className="list-disc space-y-2 pl-4 text-xl">
               {String(history.success_cd) === 'F' ? (

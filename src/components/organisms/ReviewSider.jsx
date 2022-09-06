@@ -7,7 +7,7 @@ function ReviewSider() {
 
   return (
     <div className="fixed top-[3.8125rem] bottom-0 right-[max(0px,calc(50%-45rem))] z-20 hidden w-[19.5rem] overflow-y-auto py-10 px-8 xl:block">
-      <h5 className="mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">
+      <h5 className="mb-4 text-sm font-semibold leading-6 text-slate-900">
         바로가기
       </h5>
       <ul className="text-sm leading-6 text-slate-700">
@@ -18,12 +18,7 @@ function ReviewSider() {
               <button
                 type="button"
                 name={question.id}
-                className={`py-1 font-medium ${
-                  // id === question.id
-                  // ? 'text-sky-500 dark:text-sky-400'
-                  // : 'hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
-                  'hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
-                }`}
+                className={`py-1 font-medium ${'hover:text-slate-900'}`}
                 onClick={resultDetail.handleScroll}
               >
                 {`질문 ${index + 1}`}

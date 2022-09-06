@@ -60,7 +60,6 @@ function QuestionHeader() {
 
   return (
     <div className="relative z-10 p-4">
-      {/* <div className="flex w-[41rem] rounded-lg bg-white shadow-xl shadow-black/5 ring-1 ring-slate-700/10"> */}
       <div className="flex rounded-lg bg-white shadow-xl shadow-black/5 ring-1 ring-slate-700/10">
         <div className="flex flex-auto items-center border-l border-slate-200/60 pr-4 pl-6 text-[0.8125rem] leading-5 text-slate-700">
           <div>

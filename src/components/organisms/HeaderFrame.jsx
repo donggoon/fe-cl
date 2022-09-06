@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { userLogin } from '../../../features/user/userSlice';
+import { userLogin } from '../../features/user/userSlice';
 
 function HeaderFrame() {
   const dispatch = useDispatch();
@@ -12,44 +12,38 @@ function HeaderFrame() {
     dispatch(userLogin({}));
   };
   return (
-    <div className="supports-backdrop-blur:bg-white/60 sticky top-0 z-40 w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 dark:border-slate-50/[0.06] dark:bg-transparent lg:z-50 lg:border-b lg:border-slate-900/10">
+    <div className="supports-backdrop-blur:bg-white/60 sticky top-0 z-40 w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10">
       <div className="mx-auto max-w-8xl">
-        <div className="mx-4 border-b border-slate-900/10 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-8">
+        <div className="mx-4 border-b border-slate-900/10 py-4 lg:mx-0 lg:border-0 lg:px-8">
           <div className="relative flex items-center">
             <a
               className="mr-3 w-[2.0625rem] flex-none overflow-visible md:w-auto"
               href="/"
             >
               <span className="sr-only">QUIZ home page</span>
-              <h1 className="inline-block text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200 sm:text-3xl">
+              <h1 className="inline-block text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
                 QUIZ
               </h1>
             </a>
             <div className="relative ml-auto hidden items-center lg:flex">
-              <nav className="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
+              <nav className="text-sm font-semibold leading-6 text-slate-700">
                 <ul className="flex space-x-8">
                   <Link to="c">
-                    <li className="hover:text-sky-500 dark:hover:text-sky-400">
-                      New
-                    </li>
+                    <li className="hover:text-sky-500">New</li>
                   </Link>
                   <a href="http://43.200.138.19:9002/">
-                    <li className="hover:text-sky-500 dark:hover:text-sky-400">
-                      Admin
-                    </li>
+                    <li className="hover:text-sky-500">Admin</li>
                   </a>
                   <button type="button" onClick={handleLogout}>
-                    <li className="hover:text-sky-500 dark:hover:text-sky-400">
-                      Logout
-                    </li>
+                    <li className="hover:text-sky-500">Logout</li>
                   </button>
                 </ul>
               </nav>
-              <div className="ml-6 flex items-center border-l border-slate-200 pl-6 dark:border-slate-800">
+              <div className="ml-6 flex items-center border-l border-slate-200 pl-6">
                 {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <a
                   href="https://github.com/le-cl/fe-cl"
-                  className="ml-6 block text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
+                  className="ml-6 block text-slate-400 hover:text-slate-500"
                 >
                   <span className="sr-only">quiz on GitHub</span>
                   <svg
@@ -66,7 +60,7 @@ function HeaderFrame() {
             <div className="-my-1 ml-auto flex lg:hidden">
               <button
                 type="button"
-                className="flex h-8 w-8 items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
+                className="flex h-8 w-8 items-center justify-center text-slate-500 hover:text-slate-600"
               >
                 <span className="sr-only">Navigation</span>
                 <svg width="24" height="24" fill="none" aria-hidden="true">

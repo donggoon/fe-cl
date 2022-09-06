@@ -23,25 +23,27 @@ function Intro() {
   const [histories, setHistories] = useState([]);
 
   useEffect(() => {
-    dispatch(
-      menuChanged({
-        id: 'Intro',
-        name: '시작하기',
-        description:
-          '새 테스트 또는 진행하던 테스트를 이어서 시작할 수 있습니다.',
-      }),
-    );
+    if (!isEmpty(user.id)) {
+      dispatch(
+        menuChanged({
+          id: 'Intro',
+          name: '시작하기',
+          description:
+            '새 테스트 또는 진행하던 테스트를 이어서 시작할 수 있습니다.',
+        }),
+      );
 
-    callApi('get', `/u/his?user_id=${user.id}`)
-      .then(response => {
-        const payload = response.data.map(data => {
-          return getFormattedQuizInfo(data);
+      callApi('get', `/u/his?user_id=${user.id}`)
+        .then(response => {
+          const payload = response.data.map(data => {
+            return getFormattedQuizInfo(data);
+          });
+          setHistories(payload);
+        })
+        .catch(err => {
+          console.log(err);
         });
-        setHistories(payload);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    }
   }, []);
 
   const getProgressCnt = progressSet => {
@@ -75,7 +77,7 @@ function Intro() {
                   <div className="relative h-[3.125rem] w-[3.125rem] flex-none sm:h-[3.75rem] sm:w-[3.75rem]">
                     <img
                       className="absolute inset-0 h-full w-full rounded-full object-cover"
-                      src="https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Developer-Associate_badge.5c083fa855fe82c1cf2d0c8b883c265ec72a17c0.png"
+                      src={history.logoUrl}
                       alt=""
                     />
                     <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-black/[0.08]" />

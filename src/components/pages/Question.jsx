@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import QuestionTitle from '../atoms/QuestionTitle';
 import QuestionOption from '../molecules/QuestionOption';
-import QuestionOptionGroup from '../organisms/QuestionOptionGroup';
+import QuestionOptionGroup from '../molecules/QuestionOptionGroup';
 
 import { menuChanged } from '../../features/menu/menuSlice';
 import {
@@ -52,13 +52,9 @@ function Question() {
   };
 
   useEffect(() => {
-    console.log(quiz.successCd);
     if (isEmpty(quiz.id)) {
       navigate('../../c');
     }
-    // if (!isEmpty(quiz.successCd)) {
-    //   navigate(`../../r/${quiz.id}`);
-    // }
 
     dispatch(
       menuChanged({

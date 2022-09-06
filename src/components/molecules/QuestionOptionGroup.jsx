@@ -1,6 +1,6 @@
 import React from 'react';
 
-import QuestionOption from '../molecules/QuestionOption';
+import QuestionOption from './QuestionOption';
 
 function QuestionOptionGroup({
   type,
