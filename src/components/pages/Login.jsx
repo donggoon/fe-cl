@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// import axios from 'axios';
 
 import { userLogin } from '../../features/user/userSlice';
 
@@ -13,10 +12,9 @@ function Login() {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (!isEmpty(user.id)) {
-      return navigate('/');
+      navigate('/');
     }
   }, [user.id]);
 
@@ -28,21 +26,21 @@ function Login() {
       login_id: formData.get('id'),
       password: formData.get('password'),
     };
-    callApi('post', '/u/login', { ...params })
+    callApi('post', '/u/login', params)
       .then(response => {
         dispatch(userLogin(response.data));
+        navigate('/');
       })
       .catch(err => {
         console.log(err);
       });
-    return navigate('/');
   };
 
   return (
     <main className="relative flex h-screen flex-1 flex-col overflow-hidden py-8 px-4 sm:px-6 lg:px-8">
       <div className="relative flex flex-1 flex-col items-center justify-center pt-12 pb-16">
         <a className="mx-auto mb-16 h-6 w-auto text-slate-900" href="/">
-          <span className="sr-only">QUIZ home page</span>
+          <span className="sr-only">QUIZ login page</span>
           <h1 className="inline-block text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
             QUIZ
           </h1>
