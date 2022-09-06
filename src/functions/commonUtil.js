@@ -90,6 +90,7 @@ export const getFormattedQuizInfo = data => {
     successCd: data.success_cd,
     userId: data.user_id,
     logoUrl: data.logo_url,
+    accumSec: data.accum_sec,
   };
 };
 
@@ -192,4 +193,34 @@ export const getOptionStyle = (checked, correct) => {
   //   return 'ring-2 ring-rose-500';
   // }
   return 'ring-1 ring-slate-700/10';
+};
+
+export const getProgressTimeText = originProgressTime => {
+  const hour = String(parseInt(originProgressTime / 3600, 10)).padStart(2, '0');
+  const minute = String(
+    parseInt((originProgressTime % 3600) / 60, 10),
+  ).padStart(2, '0');
+  const second = String(parseInt(originProgressTime % 60, 10)).padStart(2, '0');
+  return `${hour}:${minute}:${second}`;
+};
+
+export const getFormattedProgressTimeText = originProgressTime => {
+  const hour = parseInt(originProgressTime / 3600, 10);
+  const minute = parseInt((originProgressTime % 3600) / 60, 10);
+  const second = parseInt(originProgressTime % 60, 10);
+
+  const formattedProgressTimeText = '';
+  if (hour > 0) {
+    formattedProgressTimeText.concat(hour).concat('시간 ');
+  }
+  if (minute > 0) {
+    formattedProgressTimeText.concat(minute).concat('분 ');
+  }
+  if (second > 0) {
+    formattedProgressTimeText.concat(second).concat('초');
+  }
+  if (formattedProgressTimeText.length > 0) {
+    return formattedProgressTimeText;
+  }
+  return '0초';
 };

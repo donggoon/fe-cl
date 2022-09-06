@@ -1,4 +1,5 @@
 import React from 'react';
+import { getFormattedProgressTimeText } from '../../functions/commonUtil';
 import StatusText from '../atoms/StatusText';
 import ReviewChart from '../molecules/ReviewChart';
 
@@ -34,7 +35,9 @@ function ReviewHeader({ history }) {
               </span>
             </li>
             <li className="text-slate-700">
-              <span className="text-slate-900">1시간 52분</span>
+              <span className="text-slate-900">
+                {getFormattedProgressTimeText(history.accum_sec)}
+              </span>
             </li>
             <li className="text-slate-700">
               <span className="text-slate-900">{history.end_dt}</span>

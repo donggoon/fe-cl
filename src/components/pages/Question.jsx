@@ -1,11 +1,9 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import QuestionTitle from '../atoms/QuestionTitle';
-import QuestionOption from '../molecules/QuestionOption';
 import QuestionOptionGroup from '../molecules/QuestionOptionGroup';
 
 import { menuChanged } from '../../features/menu/menuSlice';
@@ -104,6 +102,7 @@ function Question() {
       question_id: id,
       question_set: quiz.questionSet.toString(),
       success_cd: quiz.successCd,
+      accum_sec: quiz.accumSec,
     };
 
     if (targetIndex > lastIndex) {
@@ -129,8 +128,8 @@ function Question() {
             startDt: response.data.start_dt,
             successCd: response.data.success_cd,
             userId: response.data.user_id,
+            accumSec: response.data.accum_sec,
           };
-          console.log('payload', payload);
           dispatch(initQuiz(payload));
           navigate(`../../r/${quiz.id}`);
         })

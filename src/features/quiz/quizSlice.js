@@ -16,6 +16,7 @@ const quizSlice = createSlice({
     startDt: null,
     successCd: null,
     userId: null,
+    accumSec: 0,
   },
   reducers: {
     initQuiz(state, action) {
@@ -30,6 +31,7 @@ const quizSlice = createSlice({
       state.startDt = action.payload.startDt;
       state.successCd = action.payload.successCd;
       state.userId = action.payload.userId;
+      state.accumSec = action.payload.accumSec;
     },
     setAnswerSet(state, action) {
       state.answerSet = action.payload;
@@ -40,9 +42,17 @@ const quizSlice = createSlice({
     setProgressSet(state, action) {
       state.progressSet = action.payload;
     },
+    setAccumSec(state, action) {
+      state.accumSec = action.payload;
+    },
   },
 });
 
-export const { initQuiz, setAnswerSet, setCorrectSet, setProgressSet } =
-  quizSlice.actions;
+export const {
+  initQuiz,
+  setAnswerSet,
+  setCorrectSet,
+  setProgressSet,
+  setAccumSec,
+} = quizSlice.actions;
 export default quizSlice.reducer;
