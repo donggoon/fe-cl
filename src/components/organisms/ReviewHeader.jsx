@@ -16,9 +16,13 @@ function ReviewHeader({ history }) {
         <ReviewChart history={history} />
       </div>
       <div className="py-5 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-3 lg:pb-8 lg:pr-4">
-        <p className="mb-2 text-sm font-semibold leading-6 text-indigo-600">{`${history.total_q_cnt}개의 질문  |  2시간  |  합격하려면 ${history.success_per}%의 정답을 달성해야함`}</p>
-        <div className="mt-4">
-          <ul className="list-disc space-y-2 pl-4 text-xl">
+        <p className="mb-2 text-sm font-semibold leading-6 text-indigo-600">{`${
+          history.total_q_cnt
+        }개의 질문  |  ${getFormattedProgressTimeText(
+          history.time_limit * 60,
+        )}  |  합격하려면 ${history.success_per}%의 정답을 달성해야함`}</p>
+        <div className="mt-12">
+          <ul className="list-disc space-y-2 pl-4 text-base">
             {String(history.success_cd) === 'F' ? (
               <li className="text-rose-600">
                 <span>
@@ -27,7 +31,7 @@ function ReviewHeader({ history }) {
               </li>
             ) : null}
             <li className="text-slate-700">
-              <span className="text-3xl font-extrabold text-slate-900">
+              <span className="text-2xl font-extrabold text-slate-900">
                 {`${history.correct_per}% `}
               </span>
               <span className="text-slate-900">

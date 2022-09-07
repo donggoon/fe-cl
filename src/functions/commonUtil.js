@@ -195,32 +195,34 @@ export const getOptionStyle = (checked, correct) => {
   return 'ring-1 ring-slate-700/10';
 };
 
-export const getProgressTimeText = originProgressTime => {
-  const hour = String(parseInt(originProgressTime / 3600, 10)).padStart(2, '0');
-  const minute = String(
-    parseInt((originProgressTime % 3600) / 60, 10),
-  ).padStart(2, '0');
-  const second = String(parseInt(originProgressTime % 60, 10)).padStart(2, '0');
+export const getProgressTimeText = progressTime => {
+  const hour = String(parseInt(progressTime / 3600, 10)).padStart(2, '0');
+  const minute = String(parseInt((progressTime % 3600) / 60, 10)).padStart(
+    2,
+    '0',
+  );
+  const second = String(parseInt(progressTime % 60, 10)).padStart(2, '0');
   return `${hour}:${minute}:${second}`;
 };
 
-export const getFormattedProgressTimeText = originProgressTime => {
-  const hour = parseInt(originProgressTime / 3600, 10);
-  const minute = parseInt((originProgressTime % 3600) / 60, 10);
-  const second = parseInt(originProgressTime % 60, 10);
+export const getFormattedProgressTimeText = progressTime => {
+  const hour = parseInt(progressTime / 3600, 10);
+  const minute = parseInt((progressTime % 3600) / 60, 10);
+  const second = parseInt(progressTime % 60, 10);
 
-  const formattedProgressTimeText = '';
+  const formattedProgressTimeText = [];
   if (hour > 0) {
-    formattedProgressTimeText.concat(hour).concat('시간 ');
+    formattedProgressTimeText.push(`${hour}시간`);
   }
   if (minute > 0) {
-    formattedProgressTimeText.concat(minute).concat('분 ');
+    formattedProgressTimeText.push(`${minute}분`);
   }
   if (second > 0) {
-    formattedProgressTimeText.concat(second).concat('초');
+    formattedProgressTimeText.push(`${second}초`);
   }
+
   if (formattedProgressTimeText.length > 0) {
-    return formattedProgressTimeText;
+    return formattedProgressTimeText.join(' ');
   }
   return '0초';
 };
