@@ -226,3 +226,13 @@ export const getFormattedProgressTimeText = progressTime => {
   }
   return '0초';
 };
+
+export const getCategoryInfoText = (
+  questionCount,
+  timeLimit,
+  successPercent,
+) => {
+  return `${questionCount}개의 질문  |  ${getFormattedProgressTimeText(
+    timeLimit * 60,
+  )}  |  합격하려면 ${successPercent}%의 정답을 달성해야함`;
+};

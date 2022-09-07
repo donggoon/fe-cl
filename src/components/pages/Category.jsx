@@ -8,8 +8,8 @@ import { initQuiz } from '../../features/quiz/quizSlice';
 
 import {
   callApi,
+  getCategoryInfoText,
   getFormattedQuizInfo,
-  isEmpty,
 } from '../../functions/commonUtil';
 
 function Category() {
@@ -43,15 +43,11 @@ function Category() {
       question_cnt: category.question_cnt,
       user_id: user.id,
     };
-    callApi('post', '/q/start', {
-      ...params,
-    })
+    callApi('post', '/q/start', params)
       .then(response => {
-        if (!isEmpty(response.data)) {
-          const payload = getFormattedQuizInfo(response.data);
-          dispatch(initQuiz(payload));
-          navigate(`/q/${payload.questionSet[0]}`);
-        }
+        const payload = getFormattedQuizInfo(response.data);
+        dispatch(initQuiz(payload));
+        navigate(`/q/${payload.questionSet[0]}`);
       })
       .catch(err => {
         console.log(err);
@@ -67,9 +63,11 @@ function Category() {
         >
           <div className="flex-auto">
             <h3 className="mb-4 text-sm font-semibold leading-6 text-indigo-600">
-              {category.name.includes('AWS')
-                ? 'Amazon Web Service'
-                : '한국데이터진흥원'}
+              {getCategoryInfoText(
+                category.question_cnt,
+                category.time_limit,
+                category.success_percent,
+              )}
             </h3>
             <p className="mb-2 text-xl font-semibold tracking-tight text-slate-900">
               {category.name}

@@ -1,5 +1,8 @@
 import React from 'react';
-import { getFormattedProgressTimeText } from '../../functions/commonUtil';
+import {
+  getCategoryInfoText,
+  getFormattedProgressTimeText,
+} from '../../functions/commonUtil';
 import StatusText from '../atoms/StatusText';
 import ReviewChart from '../molecules/ReviewChart';
 
@@ -16,11 +19,13 @@ function ReviewHeader({ history }) {
         <ReviewChart history={history} />
       </div>
       <div className="py-5 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-3 lg:pb-8 lg:pr-4">
-        <p className="mb-2 text-sm font-semibold leading-6 text-indigo-600">{`${
-          history.total_q_cnt
-        }개의 질문  |  ${getFormattedProgressTimeText(
-          history.time_limit * 60,
-        )}  |  합격하려면 ${history.success_per}%의 정답을 달성해야함`}</p>
+        <p className="mb-2 text-sm font-semibold leading-6 text-indigo-600">
+          {getCategoryInfoText(
+            history.total_q_cnt,
+            history.time_limit,
+            history.success_per,
+          )}
+        </p>
         <div className="mt-12">
           <ul className="list-disc space-y-2 pl-4 text-base">
             {String(history.success_cd) === 'F' ? (
