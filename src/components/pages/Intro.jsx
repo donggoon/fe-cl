@@ -21,6 +21,7 @@ function Intro() {
   const navigate = useNavigate();
 
   const [histories, setHistories] = useState([]);
+  const [isResponsed, setIsResponsed] = useState(false);
 
   useEffect(() => {
     if (!isEmpty(user.id)) {
@@ -39,6 +40,7 @@ function Intro() {
             return getFormattedQuizInfo(data);
           });
           setHistories(payload);
+          setIsResponsed(true);
         })
         .catch(err => {
           console.log(err);
@@ -63,7 +65,7 @@ function Intro() {
     navigate(`/r/${history.id}`);
   };
 
-  return (
+  return isResponsed ? (
     <div className="mt-8 space-y-4 sm:mt-10">
       <ul className="divide-y divide-gray-100">
         {histories.map(history => {
@@ -142,7 +144,7 @@ function Intro() {
       </ul>
       <IntroHeader />
     </div>
-  );
+  ) : null;
 }
 
 export default Intro;
