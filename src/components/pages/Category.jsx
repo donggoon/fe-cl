@@ -49,10 +49,6 @@ function Category() {
       .then(response => {
         if (!isEmpty(response.data)) {
           const payload = getFormattedQuizInfo(response.data);
-          const progressSet = response.data.progress_set.split(',');
-          // 다음 문제 진행 체크
-          progressSet[0] = '1';
-          payload.progressSet = progressSet;
           dispatch(initQuiz(payload));
           navigate(`/q/${payload.questionSet[0]}`);
         }
