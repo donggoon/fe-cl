@@ -30,6 +30,7 @@ function Question() {
   const { id } = useParams();
   const [question, setQuestion] = useState({});
   const [options, setOptions] = useState([]);
+  const [isLast, setIsLast] = useState(false);
 
   const getCheckedOptions = originOptions => {
     const currentIndex = quiz.questionSet.indexOf(id);
@@ -62,6 +63,10 @@ function Question() {
       }),
     );
 
+    if (quiz.progressSet.filter(value => String(value) === '0').length < 1) {
+      setIsLast(true);
+    }
+
     callApi('get', `/q/${id}`)
       .then(response => {
         setQuestion(response.data.question);
@@ -72,9 +77,82 @@ function Question() {
       });
   }, [id]);
 
+  const getIsLast = () => {
+    if (isLast) return true;
+
+    const targetIndex = quiz.questionSet.indexOf(id) + 1;
+    const lastIndex = quiz.questionSet.length - 1;
+    if (targetIndex > lastIndex) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const endQuestion = (target, currentIndex) => {
+    // eslint-disable-next-line no-restricted-globals
+    if (!confirm('답안을 제출하시겠습니까?')) {
+      return;
+    }
+    const formData = new FormData(target);
+    const answerSet = [...quiz.answerSet];
+    const progressSet = [...quiz.progressSet];
+
+    const formattedAnswer = getFormattedAnswer(formData.entries());
+    // 현재 문제 완료 체크
+    if (isEmpty(formattedAnswer)) {
+      progressSet[currentIndex] = '1'; // 건너뜀
+      answerSet[currentIndex] = '0';
+    } else {
+      progressSet[currentIndex] = '2'; // 완료됨
+      answerSet[currentIndex] = formattedAnswer;
+    }
+
+    for (let i = 0; i < progressSet.length; i += 1) {
+      if (String(progressSet[i]) === '0') {
+        alert(`질문 ${i + 1}번이 완료되지 않았습니다.`);
+        return;
+      }
+    }
+
+    const params = {
+      answer_set: answerSet.toString(),
+      category_id: quiz.categoryId,
+      correct_set: quiz.correctSet.toString(),
+      id: quiz.id,
+      progress_set: progressSet.toString(),
+      question_id: id,
+      question_set: quiz.questionSet.toString(),
+      success_cd: quiz.successCd,
+      accum_sec: quiz.accumSec,
+    };
+
+    callApi('post', '/q/end', params)
+      .then(response => {
+        const payload = {
+          answerSet: response.data.answer_set.split(','),
+          categoryId: response.data.category_id,
+          correctSet: response.data.correct_set.split(','),
+          endDt: response.data.end_dt,
+          id: response.data.id,
+          progressSet: response.data.progress_set.split(','),
+          questionSet: response.data.question_set.split(','),
+          seq: response.data.seq,
+          startDt: response.data.start_dt,
+          successCd: response.data.success_cd,
+          userId: response.data.user_id,
+          accumSec: response.data.accum_sec,
+        };
+        dispatch(initQuiz(payload));
+        navigate(`../../r/${quiz.id}`);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   const moveQuestionIndex = (target, targetIndex) => {
     const currentIndex = quiz.questionSet.indexOf(id);
-    const lastIndex = quiz.questionSet.length - 1;
     if (targetIndex < 0) {
       alert('첫번째 문제입니다.');
       return;
@@ -105,50 +183,15 @@ function Question() {
       accum_sec: quiz.accumSec,
     };
 
-    if (targetIndex > lastIndex) {
-      for (let i = 0; i < progressSet.length; i += 1) {
-        if (String(progressSet[i]) === '0') {
-          alert(`질문 ${i + 1}번이 완료되지 않았습니다.`);
-          return;
-        }
-      }
-      callApi('post', '/q/end', {
-        ...params,
+    callApi('post', '/q/move', params)
+      .then(() => {
+        dispatch(setAnswerSet(answerSet));
+        dispatch(setProgressSet(progressSet));
+        navigate(`../../q/${quiz.questionSet[targetIndex]}`);
       })
-        .then(response => {
-          const payload = {
-            answerSet: response.data.answer_set.split(','),
-            categoryId: response.data.category_id,
-            correctSet: response.data.correct_set.split(','),
-            endDt: response.data.end_dt,
-            id: response.data.id,
-            progressSet: response.data.progress_set.split(','),
-            questionSet: response.data.question_set.split(','),
-            seq: response.data.seq,
-            startDt: response.data.start_dt,
-            successCd: response.data.success_cd,
-            userId: response.data.user_id,
-            accumSec: response.data.accum_sec,
-          };
-          dispatch(initQuiz(payload));
-          navigate(`../../r/${quiz.id}`);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    } else {
-      callApi('post', '/q/move', {
-        ...params,
-      })
-        .then(() => {
-          dispatch(setAnswerSet(answerSet));
-          dispatch(setProgressSet(progressSet));
-          navigate(`../../q/${quiz.questionSet[targetIndex]}`);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const handleSubmit = e => {
@@ -159,6 +202,8 @@ function Question() {
       moveQuestionIndex(e.target, currentIndex - 1);
     } else if (buttonName === 'next') {
       moveQuestionIndex(e.target, currentIndex + 1);
+    } else if (buttonName === 'submit') {
+      endQuestion(e.target, currentIndex);
     }
   };
 
@@ -183,7 +228,11 @@ function Question() {
         </div>
         <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
           <SubmitButton name="previous">뒤로</SubmitButton>
-          <SubmitButton name="next">다음</SubmitButton>
+          {getIsLast() ? (
+            <SubmitButton name="submit">제출</SubmitButton>
+          ) : (
+            <SubmitButton name="next">다음</SubmitButton>
+          )}
         </div>
       </div>
     </form>
