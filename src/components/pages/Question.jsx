@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -33,6 +33,7 @@ function Question() {
   const [question, setQuestion] = useState({});
   const [options, setOptions] = useState([]);
   const [isLast, setIsLast] = useState(false);
+  const formRef = useRef();
 
   const getCheckedOptions = originOptions => {
     const currentIndex = quiz.questionSet.indexOf(id);
@@ -64,6 +65,12 @@ function Question() {
         description: '문제를 잘 읽고 정답을 고르세요.',
       }),
     );
+
+    window.scrollTo({
+      top: formRef.current.offsetTop,
+      left: 0,
+      behavior: 'auto',
+    });
 
     if (quiz.progressSet.filter(value => String(value) === '0').length < 1) {
       setIsLast(true);
@@ -247,7 +254,7 @@ function Question() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} ref={formRef}>
       <div className="overflow-hidden shadow sm:rounded-md">
         {!isEmpty(quiz.id) ? <QuestionHeader /> : null}
         <Divider padding="1" />
