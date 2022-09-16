@@ -13,7 +13,6 @@ import {
 import { initQuiz } from '../../features/quiz/quizSlice';
 import StatusText from '../atoms/StatusText';
 import IntroHeader from '../organisms/IntroHeader';
-import AnchorButton from '../atoms/AnchorButton';
 
 function Intro() {
   const user = useSelector(state => state.user);

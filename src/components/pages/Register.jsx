@@ -28,16 +28,16 @@ function Register() {
       callApi('post', '/u', params)
         .then(response => {
           if (response.status === 200) {
-            alert('회원가입이 완료되었습니다.\n로그인 후 이용해주세요.');
+            alert('사용자 등록이 완료되었습니다.\n로그인 후 이용해주세요.');
             navigate('../');
           }
         })
         .catch(err => {
           if (err.response.data.code === '1') {
-            alert('중복된 이메일입니다.');
+            alert('중복된 아이디입니다.');
           } else {
             alert(
-              '회원가입에 실패하였습니다.\n자세한 사항은 관리자에게 문의하십시오.',
+              '사용자 등록에 실패하였습니다.\n자세한 사항은 관리자에게 문의하십시오.',
             );
           }
         });
@@ -47,12 +47,9 @@ function Register() {
   return (
     <main className="relative flex h-screen flex-1 flex-col overflow-hidden py-8 px-4 sm:px-6 lg:px-8">
       <div className="relative flex flex-1 flex-col items-center justify-center pt-12 pb-16">
-        <a className="mx-auto mb-16 h-6 w-auto text-slate-900" href="/">
-          <span className="sr-only">QUIZ register page</span>
-          <h1 className="inline-block text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-            회원가입
-          </h1>
-        </a>
+        <h1 className="inline-block text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          QUIZ
+        </h1>
         <h1 className="sr-only">Register your account</h1>
         <form action="/" className="w-full max-w-sm" onSubmit={handleSubmit}>
           <div className="mb-6">
@@ -123,7 +120,7 @@ function Register() {
             type="submit"
             className="inline-flex w-full justify-center rounded-lg bg-slate-900 py-2.5 px-4 text-sm font-semibold text-white hover:bg-slate-700"
           >
-            <span>가입하기</span>
+            <span>등록하기</span>
           </button>
         </form>
       </div>

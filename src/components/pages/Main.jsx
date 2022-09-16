@@ -6,6 +6,7 @@ import HeaderFrame from '../organisms/HeaderFrame';
 import MainFrame from '../organisms/MainFrame';
 
 import { isEmpty } from '../../functions/commonUtil';
+import ModalFrame from '../organisms/ModalFrame';
 
 function Main() {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ function Main() {
     <>
       <HeaderFrame />
       <MainFrame />
+      <ModalFrame />
     </>
   );
 }

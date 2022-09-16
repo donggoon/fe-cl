@@ -13,6 +13,8 @@ import {
   setProgressSet,
 } from '../../features/quiz/quizSlice';
 
+import { showConfirm, showAlert } from '../../features/modal/modalSlice';
+
 import {
   callApi,
   isEmpty,
@@ -90,10 +92,6 @@ function Question() {
   };
 
   const endQuestion = (target, currentIndex) => {
-    // eslint-disable-next-line no-restricted-globals
-    if (!confirm('답안을 제출하시겠습니까?')) {
-      return;
-    }
     const formData = new FormData(target);
     const answerSet = [...quiz.answerSet];
     const progressSet = [...quiz.progressSet];
@@ -110,7 +108,13 @@ function Question() {
 
     for (let i = 0; i < progressSet.length; i += 1) {
       if (String(progressSet[i]) === '0') {
-        alert(`질문 ${i + 1}번이 완료되지 않았습니다.`);
+        const payload = {
+          isShow: true,
+          title: '알림',
+          message: `질문 ${i + 1}번이 완료되지 않았습니다.`,
+          callback: () => {},
+        };
+        dispatch(showAlert(payload));
         return;
       }
     }
@@ -154,7 +158,13 @@ function Question() {
   const moveQuestionIndex = (target, targetIndex) => {
     const currentIndex = quiz.questionSet.indexOf(id);
     if (targetIndex < 0) {
-      alert('첫번째 문제입니다.');
+      const payload = {
+        isShow: true,
+        title: '알림',
+        message: '첫 번째 문제입니다.',
+        callback: () => {},
+      };
+      dispatch(showAlert(payload));
       return;
     }
     const formData = new FormData(target);
@@ -203,7 +213,15 @@ function Question() {
     } else if (buttonName === 'next') {
       moveQuestionIndex(e.target, currentIndex + 1);
     } else if (buttonName === 'submit') {
-      endQuestion(e.target, currentIndex);
+      const payload = {
+        isShow: true,
+        title: '확인',
+        message: '답안을 제출하시겠습니까?',
+        callback: () => {
+          endQuestion(e.target, currentIndex);
+        },
+      };
+      dispatch(showConfirm(payload));
     }
   };
 
