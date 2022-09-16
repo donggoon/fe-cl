@@ -79,14 +79,15 @@ function Category() {
               <p>{category.description}</p>
             </div>
             <button
-              className="group inline-flex h-9 items-center whitespace-nowrap rounded-full bg-slate-700 px-3 text-sm font-semibold text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+              className="group inline-flex h-9 items-center whitespace-nowrap rounded-full bg-slate-700 px-3 text-sm font-semibold text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 disabled:bg-slate-300"
               // to="../q"
               type="button"
               onClick={() => handleClick(category)}
+              disabled={category.active_yn === 'N'}
             >
-              시험보기
+              {category.active_yn === 'Y' ? '시험보기' : '준비중'}
               <svg
-                className="ml-3 overflow-visible text-slate-300 group-hover:text-slate-200"
+                className="ml-3 overflow-visible text-slate-300 disabled:text-white enabled:group-hover:text-slate-200 disabled:group-hover:text-slate-300"
                 width="3"
                 height="6"
                 viewBox="0 0 3 6"
