@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { menuChanged } from '../../features/menu/menuSlice';
+import { showAlert } from '../../features/modal/modalSlice';
 import {
   callApi,
   getFormattedQuizInfo,
@@ -41,8 +42,15 @@ function Intro() {
           setHistories(payload);
           setIsResponsed(true);
         })
-        .catch(err => {
-          console.log(err);
+        .catch(error => {
+          dispatch(
+            showAlert({
+              isShow: true,
+              title: '알림',
+              message: error.response.data.message,
+              callback: () => {},
+            }),
+          );
         });
     }
   }, []);

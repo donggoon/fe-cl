@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { menuChanged } from '../../features/menu/menuSlice';
 import { initQuiz } from '../../features/quiz/quizSlice';
+import { showAlert } from '../../features/modal/modalSlice';
 
 import {
   callApi,
@@ -32,8 +33,15 @@ function Category() {
       .then(response => {
         setCategories(response.data);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        dispatch(
+          showAlert({
+            isShow: true,
+            title: '알림',
+            message: error.response.data.message,
+            callback: () => {},
+          }),
+        );
       });
   }, []);
 
@@ -49,8 +57,15 @@ function Category() {
         dispatch(initQuiz(payload));
         navigate(`/q/${payload.questionSet[0]}`);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        dispatch(
+          showAlert({
+            isShow: true,
+            title: '알림',
+            message: error.response.data.message,
+            callback: () => {},
+          }),
+        );
       });
   };
 

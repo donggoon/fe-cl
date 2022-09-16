@@ -79,27 +79,15 @@ function Register() {
               );
             }
           })
-          .catch(err => {
-            if (err.response.data.code === '1') {
-              dispatch(
-                showAlert({
-                  isShow: true,
-                  title: '알림',
-                  message: '중복된 아이디입니다.',
-                  callback: () => {},
-                }),
-              );
-            } else {
-              dispatch(
-                showAlert({
-                  isShow: true,
-                  title: '알림',
-                  message:
-                    '사용자 등록에 실패하였습니다.\n자세한 사항은 관리자에게 문의하십시오.',
-                  callback: () => {},
-                }),
-              );
-            }
+          .catch(error => {
+            dispatch(
+              showAlert({
+                isShow: true,
+                title: '알림',
+                message: error.response.data.message,
+                callback: () => {},
+              }),
+            );
           });
       },
     };

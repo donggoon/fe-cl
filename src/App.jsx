@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { cancelAlert, cancelConfirm } from './features/modal/modalSlice';
 
 import Category from './components/pages/Category';
 import Intro from './components/pages/Intro';
@@ -13,6 +16,14 @@ import Review from './components/pages/Review';
 import Modal from './components/pages/Modal';
 
 function App() {
+  const dispatch = useDispatch();
+
+  // modal 새로고침해도 활성화 되어있어서 추가
+  useEffect(() => {
+    dispatch(cancelAlert());
+    dispatch(cancelConfirm());
+  }, []);
+
   return (
     <Router>
       <Routes>

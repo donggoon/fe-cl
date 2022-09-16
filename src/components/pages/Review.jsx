@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { initHistory } from '../../features/history/historySlice';
 
 import { menuChanged } from '../../features/menu/menuSlice';
+import { showAlert } from '../../features/modal/modalSlice';
 
 import { callApi } from '../../functions/commonUtil';
 import Divider from '../atoms/Divider';
@@ -64,8 +65,15 @@ function Review() {
         dispatch(initHistory(payload));
         setHistory(payload);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        dispatch(
+          showAlert({
+            isShow: true,
+            title: '알림',
+            message: error.response.data.message,
+            callback: () => {},
+          }),
+        );
       });
   }, [id]);
 

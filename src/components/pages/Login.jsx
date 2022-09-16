@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { userLogin } from '../../features/user/userSlice';
+import { showAlert } from '../../features/modal/modalSlice';
 
 import { callApi, isEmpty } from '../../functions/commonUtil';
 
@@ -22,17 +23,49 @@ function Login() {
     event.preventDefault();
 
     const formData = new FormData(event.target);
+    const loginId = formData.get('id');
+    const password = formData.get('password');
+
     const params = {
-      login_id: formData.get('id'),
-      password: formData.get('password'),
+      login_id: loginId,
+      password,
     };
+
+    if (isEmpty(loginId)) {
+      const payload = {
+        isShow: true,
+        title: '알림',
+        message: 'ID를 입력해 주세요.',
+        callback: () => {},
+      };
+      dispatch(showAlert(payload));
+      return;
+    }
+
+    if (isEmpty(password)) {
+      const payload = {
+        isShow: true,
+        title: '알림',
+        message: '비밀번호를 입력해 주세요.',
+        callback: () => {},
+      };
+      dispatch(showAlert(payload));
+      return;
+    }
+
     callApi('post', '/u/login', params)
       .then(response => {
         dispatch(userLogin(response.data));
         navigate('/');
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        const payload = {
+          isShow: true,
+          title: '알림',
+          message: error.response.data.message,
+          callback: () => {},
+        };
+        dispatch(showAlert(payload));
       });
   };
 

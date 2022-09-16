@@ -74,8 +74,15 @@ function Question() {
         setQuestion(response.data.question);
         setOptions(getCheckedOptions(response.data.options));
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        dispatch(
+          showAlert({
+            isShow: true,
+            title: '알림',
+            message: error.response.data.message,
+            callback: () => {},
+          }),
+        );
       });
   }, [id]);
 
@@ -150,8 +157,15 @@ function Question() {
         dispatch(initQuiz(payload));
         navigate(`../../r/${quiz.id}`);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        dispatch(
+          showAlert({
+            isShow: true,
+            title: '알림',
+            message: error.response.data.message,
+            callback: () => {},
+          }),
+        );
       });
   };
 
@@ -199,8 +213,15 @@ function Question() {
         dispatch(setProgressSet(progressSet));
         navigate(`../../q/${quiz.questionSet[targetIndex]}`);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        dispatch(
+          showAlert({
+            isShow: true,
+            title: '알림',
+            message: error.response.data.message,
+            callback: () => {},
+          }),
+        );
       });
   };
 
