@@ -10,6 +10,7 @@ import Question from './components/pages/Question';
 import Register from './components/pages/Register';
 import Admin from './components/pages/Admin';
 import Review from './components/pages/Review';
+import Modal from './components/pages/Modal';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
       </Routes>
+      <Modal />
     </Router>
   );
 }

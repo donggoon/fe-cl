@@ -2,7 +2,7 @@ import React from 'react';
 import Alert from '../molecules/Alert';
 import Confirm from '../molecules/Confirm';
 
-function ModalFrame() {
+function Modal() {
   return (
     <>
       <Alert />
@@ -11,4 +11,4 @@ function ModalFrame() {
   );
 }
 
-export default ModalFrame;
+export default Modal;

@@ -1,10 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { showAlert, showConfirm } from '../../features/modal/modalSlice';
 
-import { callApi } from '../../functions/commonUtil';
+import { callApi, isEmpty } from '../../functions/commonUtil';
 
 function Register() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = event => {
@@ -22,26 +25,85 @@ function Register() {
       password,
     };
 
-    if (password !== passwordConfirm) {
-      alert('패스워드와 패스워드 확인이 일치하지 않습니다.');
-    } else {
-      callApi('post', '/u', params)
-        .then(response => {
-          if (response.status === 200) {
-            alert('사용자 등록이 완료되었습니다.\n로그인 후 이용해주세요.');
-            navigate('../');
-          }
-        })
-        .catch(err => {
-          if (err.response.data.code === '1') {
-            alert('중복된 아이디입니다.');
-          } else {
-            alert(
-              '사용자 등록에 실패하였습니다.\n자세한 사항은 관리자에게 문의하십시오.',
-            );
-          }
-        });
+    if (isEmpty(loginId)) {
+      const payload = {
+        isShow: true,
+        title: '알림',
+        message: 'ID를 입력해 주세요.',
+        callback: () => {},
+      };
+      dispatch(showAlert(payload));
+      return;
     }
+
+    if (isEmpty(password)) {
+      const payload = {
+        isShow: true,
+        title: '알림',
+        message: '비밀번호를 입력해 주세요.',
+        callback: () => {},
+      };
+      dispatch(showAlert(payload));
+      return;
+    }
+
+    if (password !== passwordConfirm) {
+      const payload = {
+        isShow: true,
+        title: '알림',
+        message: '패스워드와 패스워드 확인이 일치하지 않습니다.',
+        callback: () => {},
+      };
+      dispatch(showAlert(payload));
+      return;
+    }
+
+    const payload = {
+      isShow: true,
+      title: '확인',
+      message: '등록을 진행하시겠습니까?',
+      callback: () => {
+        callApi('post', '/u', params)
+          .then(response => {
+            if (response.status === 200) {
+              dispatch(
+                showAlert({
+                  isShow: true,
+                  title: '알림',
+                  message:
+                    '사용자 등록이 완료되었습니다.\n로그인 후 이용해주세요.',
+                  callback: () => {
+                    navigate('../');
+                  },
+                }),
+              );
+            }
+          })
+          .catch(err => {
+            if (err.response.data.code === '1') {
+              dispatch(
+                showAlert({
+                  isShow: true,
+                  title: '알림',
+                  message: '중복된 아이디입니다.',
+                  callback: () => {},
+                }),
+              );
+            } else {
+              dispatch(
+                showAlert({
+                  isShow: true,
+                  title: '알림',
+                  message:
+                    '사용자 등록에 실패하였습니다.\n자세한 사항은 관리자에게 문의하십시오.',
+                  callback: () => {},
+                }),
+              );
+            }
+          });
+      },
+    };
+    dispatch(showConfirm(payload));
   };
 
   return (
