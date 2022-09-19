@@ -12,7 +12,7 @@ function QuestionTitle({ seq, text, status, children }) {
           </h3>
           {!isEmpty(status) ? <StatusText value={status} /> : null}
         </div>
-        <p className="mt-1 whitespace-pre-line text-sm text-gray-600">{text}</p>
+        <p className="mt-1 whitespace-pre-wrap text-sm text-gray-600">{text}</p>
         {children}
       </div>
     </div>
