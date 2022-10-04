@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -12,8 +11,8 @@ import {
 } from '../../functions/commonUtil';
 
 import { initQuiz } from '../../features/quiz/quizSlice';
-import StatusText from '../atoms/StatusText';
-import IntroHeader from '../organisms/IntroHeader';
+import Status from '../atoms/common/Status';
+import IntroHeader from '../organisms/intro/IntroHeader';
 
 function Intro() {
   const user = useSelector(state => state.user);
@@ -99,7 +98,7 @@ function Intro() {
                     <div className="col-start-3 row-start-2 -ml-2.5 sm:ml-0 sm:pl-6">
                       <dt className="sr-only">Category</dt>
                       <dd className="flex items-center text-xs leading-6 text-gray-600">
-                        <StatusText value={history.successCd} />
+                        <Status value={history.successCd} />
                       </dd>
                     </div>
                     <div className="col-span-2 col-start-1 w-full flex-none">

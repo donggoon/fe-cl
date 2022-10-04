@@ -1,20 +1,8 @@
 import React from 'react';
-import { getOptionColor } from '../../functions/commonUtil';
+import { getOptionColor } from '../../../../functions/commonUtil';
 
 function CheckIcon({ checked, correct }) {
-  /*
-  className={({ active, checked }) =>
-    `${active
-      ? 'ring-2 ring-white ring-opacity-60 ring-offset-2 ring-offset-sky-300'
-      : ''
-    }
-    ${checked ? 'bg-sky-900 bg-opacity-75 text-white' : 'bg-white'
-    }
-      relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
-  }
-  */
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <svg className="h-5 w-5 flex-none" fill="none">
       <path
         fillRule="evenodd"

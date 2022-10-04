@@ -8,12 +8,12 @@ import Category from './components/pages/Category';
 import Intro from './components/pages/Intro';
 import Login from './components/pages/Login';
 import Main from './components/pages/Main';
-import MyPage from './components/pages/MyPage';
 import Question from './components/pages/Question';
 import Register from './components/pages/Register';
-import Admin from './components/pages/Admin';
 import Review from './components/pages/Review';
-import Modal from './components/pages/Modal';
+import Alert from './components/pages/Alert';
+import Confirm from './components/pages/Confirm';
+import Header from './components/pages/Header';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,18 +27,25 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Main />}>
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <Main />
+            </>
+          }
+        >
           <Route index element={<Intro />} />
           <Route path="q/:id" element={<Question />} />
           <Route path="c" element={<Category />} />
-          <Route path="m" element={<MyPage />} />
-          <Route path="a" element={<Admin />} />
           <Route path="r/:id" element={<Review />} />
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
       </Routes>
-      <Modal />
+      <Alert />
+      <Confirm />
     </Router>
   );
 }

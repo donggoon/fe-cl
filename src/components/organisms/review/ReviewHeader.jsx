@@ -2,9 +2,9 @@ import React from 'react';
 import {
   getCategoryInfoText,
   getFormattedProgressTimeText,
-} from '../../functions/commonUtil';
-import StatusText from '../atoms/StatusText';
-import ReviewChart from '../molecules/ReviewChart';
+} from '../../../functions/commonUtil';
+import Status from '../../atoms/common/Status';
+import Chart from '../../molecules/common/Chart';
 
 function ReviewHeader({ history }) {
   return (
@@ -13,10 +13,10 @@ function ReviewHeader({ history }) {
         <h3 className="text-lg font-semibold leading-6 text-gray-900">
           {`${history.category_nm} 결과`}
         </h3>
-        <StatusText value={history.success_cd} />
+        <Status value={history.success_cd} />
       </div>
       <div className="mt-4 lg:row-span-3 lg:mt-0">
-        <ReviewChart history={history} />
+        <Chart history={history} />
       </div>
       <div className="py-5 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-3 lg:pb-8 lg:pr-4">
         <p className="mb-2 text-sm font-semibold leading-6 text-indigo-600">

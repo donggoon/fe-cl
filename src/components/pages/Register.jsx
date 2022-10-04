@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { showAlert, showConfirm } from '../../features/modal/modalSlice';
 
 import { callApi, isEmpty } from '../../functions/commonUtil';
+import LoginButton from '../atoms/common/buttons/LoginButton';
+import LoginInput from '../molecules/login/LoginInput';
+import LoginForm from '../organisms/login/LoginForm';
 
 function Register() {
   const dispatch = useDispatch();
@@ -17,7 +20,7 @@ function Register() {
     const loginId = formData.get('id');
     const name = formData.get('name');
     const password = formData.get('password');
-    const passwordConfirm = formData.get('passwordConfirm');
+    const confirm = formData.get('confirm');
 
     const params = {
       login_id: loginId,
@@ -47,7 +50,7 @@ function Register() {
       return;
     }
 
-    if (password !== passwordConfirm) {
+    if (password !== confirm) {
       const payload = {
         isShow: true,
         title: '알림',
@@ -95,86 +98,39 @@ function Register() {
   };
 
   return (
-    <main className="relative flex h-screen flex-1 flex-col overflow-hidden py-8 px-4 sm:px-6 lg:px-8">
-      <div className="relative flex flex-1 flex-col items-center justify-center pt-12 pb-16">
-        <h1 className="inline-block text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-          QUIZ
-        </h1>
-        <h1 className="sr-only">Register your account</h1>
-        <form action="/" className="w-full max-w-sm" onSubmit={handleSubmit}>
-          <div className="mb-6">
-            <label
-              htmlFor="name"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              이름
-            </label>
-            <input
-              type="name"
-              id="name"
-              name="name"
-              className="mt-2 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-900 shadow-sm ring-1 ring-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 sm:text-sm"
-              required=""
-              placeholder="이름을 입력하세요"
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="id"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              ID
-            </label>
-            <input
-              type="id"
-              id="id"
-              name="id"
-              className="mt-2 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-900 shadow-sm ring-1 ring-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 sm:text-sm"
-              required=""
-              placeholder="ID를 입력하세요"
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="password"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              비밀번호
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="mt-2 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-900 shadow-sm ring-1 ring-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 sm:text-sm"
-              required=""
-              placeholder="비밀번호를 입력하세요"
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="passwordConfirm"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              비밀번호 확인
-            </label>
-            <input
-              type="password"
-              id="passwordConfirm"
-              name="passwordConfirm"
-              className="mt-2 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-900 shadow-sm ring-1 ring-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 sm:text-sm"
-              required=""
-              placeholder="비밀번호를 한번 더 입력하세요"
-            />
-          </div>
-          <button
-            type="submit"
-            className="inline-flex w-full justify-center rounded-lg bg-slate-900 py-2.5 px-4 text-sm font-semibold text-white hover:bg-slate-700"
-          >
-            <span>등록하기</span>
-          </button>
-        </form>
-      </div>
-    </main>
+    <LoginForm name="register" onSubmit={handleSubmit}>
+      <LoginInput type="name" id="name" placeholder="이름을 입력하세요">
+        이름
+      </LoginInput>
+      <LoginInput
+        type="id"
+        id="id"
+        name="id"
+        required
+        placeholder="아이디를 입력하세요"
+      >
+        아이디
+      </LoginInput>
+      <LoginInput
+        type="password"
+        id="password"
+        name="password"
+        required
+        placeholder="비밀번호를 입력하세요"
+      >
+        비밀번호
+      </LoginInput>
+      <LoginInput
+        type="password"
+        id="confirm"
+        name="confirm"
+        required
+        placeholder="비밀번호를 한번 더 입력하세요"
+      >
+        비밀번호 확인
+      </LoginInput>
+      <LoginButton>등록하기</LoginButton>
+    </LoginForm>
   );
 }
 

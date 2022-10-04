@@ -1,6 +1,6 @@
 import React from 'react';
 
-function QutestionImage({ src }) {
+function Image({ src }) {
   return src ? (
     <img
       className="my-0 mx-auto"
@@ -10,4 +10,4 @@ function QutestionImage({ src }) {
   ) : null;
 }
 
-export default QutestionImage;
+export default Image;

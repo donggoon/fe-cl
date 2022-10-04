@@ -7,11 +7,10 @@ import { menuChanged } from '../../features/menu/menuSlice';
 import { showAlert } from '../../features/modal/modalSlice';
 
 import { callApi } from '../../functions/commonUtil';
-import Divider from '../atoms/Divider';
-import QutestionImage from '../atoms/QuestionImage';
-import QuestionTitle from '../atoms/QuestionTitle';
-import QuestionOptionGroup from '../molecules/QuestionOptionGroup';
-import ReviewHeader from '../organisms/ReviewHeader';
+import Divider from '../atoms/common/Divider';
+import QuestionContent from '../molecules/question/QuestionContent';
+import QuestionOptions from '../molecules/question/QuestionOptions';
+import ReviewHeader from '../organisms/review/ReviewHeader';
 
 function Review() {
   const dispatch = useDispatch();
@@ -95,15 +94,14 @@ function Review() {
               >
                 <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                   <div className="space-y-2">
-                    <QuestionTitle
+                    <QuestionContent
                       seq={index + 1}
                       text={question.text}
                       status={question.correct_yn}
-                    >
-                      <QutestionImage src={question.image} />
-                    </QuestionTitle>
+                      image={question.image}
+                    />
                     <Divider padding="1" />
-                    <QuestionOptionGroup
+                    <QuestionOptions
                       type={question.type}
                       options={getFormattedOptions(options)}
                     />

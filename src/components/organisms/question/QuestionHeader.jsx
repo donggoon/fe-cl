@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAccumSec } from '../../features/quiz/quizSlice';
+import { setAccumSec } from '../../../features/quiz/quizSlice';
 import {
   getIsProgressed,
   getProgressTimeText,
-} from '../../functions/commonUtil';
+} from '../../../functions/commonUtil';
 
-import ClockIcon from '../atoms/ClockIcon';
-import QuestionProgressBar from '../atoms/QuestionProgressBar';
+import ClockIcon from '../../atoms/common/icons/ClockIcon';
+import QuestionProgressBar from '../../atoms/question/QuestionProgressBar';
 
 function QuestionHeader() {
   const quiz = useSelector(state => state.quiz);

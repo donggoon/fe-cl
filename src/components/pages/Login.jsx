@@ -7,6 +7,9 @@ import { userLogin } from '../../features/user/userSlice';
 import { showAlert } from '../../features/modal/modalSlice';
 
 import { callApi, isEmpty } from '../../functions/commonUtil';
+import Button from '../atoms/common/buttons/LoginButton';
+import LoginInput from '../molecules/login/LoginInput';
+import LoginForm from '../organisms/login/LoginForm';
 
 function Login() {
   const navigate = useNavigate();
@@ -70,68 +73,15 @@ function Login() {
   };
 
   return (
-    <main className="relative flex h-screen flex-1 flex-col overflow-hidden py-8 px-4 sm:px-6 lg:px-8">
-      <div className="relative flex flex-1 flex-col items-center justify-center pt-12 pb-16">
-        <a className="mx-auto mb-16 h-6 w-auto text-slate-900" href="/">
-          <span className="sr-only">QUIZ login page</span>
-          <h1 className="inline-block text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-            QUIZ
-          </h1>
-        </a>
-        <h1 className="sr-only">로그인</h1>
-        <form action="/" className="w-full max-w-sm" onSubmit={handleSubmit}>
-          <div className="mb-6">
-            <label
-              htmlFor="id"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              아이디
-            </label>
-            <input
-              // type="id"
-              id="id"
-              name="id"
-              className="mt-2 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-900 shadow-sm ring-1 ring-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 sm:text-sm"
-              required=""
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="password"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              비밀번호
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="mt-2 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-900 shadow-sm ring-1 ring-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 sm:text-sm"
-              required=""
-            />
-          </div>
-          <button
-            type="submit"
-            className="inline-flex w-full justify-center rounded-lg bg-slate-900 py-2.5 px-4 text-sm font-semibold text-white hover:bg-slate-700"
-          >
-            <span>로그인</span>
-          </button>
-        </form>
-      </div>
-      <footer className="relative shrink-0">
-        <div className="space-y-4 text-sm text-gray-900 sm:flex sm:items-center sm:justify-center sm:space-y-0 sm:space-x-4">
-          <p className="text-center sm:text-left">아이디가 없으신가요?</p>
-          <a
-            className="inline-flex justify-center rounded-lg py-2.5 px-4 text-sm font-semibold text-slate-900 ring-1 ring-slate-900/10 hover:ring-slate-900/20"
-            href="/register"
-          >
-            <span>
-              사용자 등록하기 <span aria-hidden="true">→</span>
-            </span>
-          </a>
-        </div>
-      </footer>
-    </main>
+    <LoginForm name="login" onSubmit={handleSubmit}>
+      <LoginInput id="id" name="id" required>
+        아이디
+      </LoginInput>
+      <LoginInput id="password" name="password" required>
+        비밀번호
+      </LoginInput>
+      <Button>로그인</Button>
+    </LoginForm>
   );
 }
 

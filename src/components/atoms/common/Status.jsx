@@ -3,9 +3,9 @@ import {
   getIsProgressed,
   getStatusStyle,
   getStatusText,
-} from '../../functions/commonUtil';
+} from '../../../functions/commonUtil';
 
-function StatusText({ value }) {
+function Status({ value }) {
   return getIsProgressed(value) ? (
     <span
       className={`ml-2 rounded-full ${getStatusStyle(
@@ -17,4 +17,4 @@ function StatusText({ value }) {
   ) : null;
 }
 
-export default StatusText;
+export default Status;

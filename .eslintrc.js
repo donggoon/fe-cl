@@ -21,6 +21,7 @@ module.exports = {
     ],
     'react/prop-types': ['off'],
     'tailwindcss/classname-order': 'off',
+    'tailwindcss/no-custom-classname': 'off',
     'no-console': 'off',
     'no-alert': 'off',
   },

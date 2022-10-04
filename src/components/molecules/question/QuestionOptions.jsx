@@ -2,12 +2,7 @@ import React from 'react';
 
 import QuestionOption from './QuestionOption';
 
-function QuestionOptionGroup({
-  type,
-  options,
-  setOptions = () => {},
-  children,
-}) {
+function QuestionOptions({ type, options, setOptions = () => {}, children }) {
   const handleChange = id => {
     setOptions(
       options.map(option => {
@@ -47,4 +42,4 @@ function QuestionOptionGroup({
   );
 }
 
-export default QuestionOptionGroup;
+export default QuestionOptions;

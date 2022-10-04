@@ -3,8 +3,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import QuestionTitle from '../atoms/QuestionTitle';
-import QuestionOptionGroup from '../molecules/QuestionOptionGroup';
+import QuestionContent from '../molecules/question/QuestionContent';
+import QuestionOptions from '../molecules/question/QuestionOptions';
 
 import { menuChanged } from '../../features/menu/menuSlice';
 import {
@@ -20,10 +20,9 @@ import {
   isEmpty,
   getFormattedAnswer,
 } from '../../functions/commonUtil';
-import SubmitButton from '../atoms/SubmitButton';
-import QutestionImage from '../atoms/QuestionImage';
-import QuestionHeader from '../organisms/QuestionHeader';
-import Divider from '../atoms/Divider';
+import SubmitButton from '../atoms/common/buttons/SubmitButton';
+import QuestionHeader from '../organisms/question/QuestionHeader';
+import Divider from '../atoms/common/Divider';
 
 function Question() {
   const navigate = useNavigate();
@@ -259,14 +258,13 @@ function Question() {
         {!isEmpty(quiz.id) ? <QuestionHeader /> : null}
         <Divider padding="1" />
         <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
-          <QuestionTitle
+          <QuestionContent
             seq={quiz.questionSet.indexOf(id) + 1}
             text={question.text}
-          >
-            <QutestionImage src={question.image} />
-          </QuestionTitle>
+            image={question.image}
+          />
           <Divider padding="1" />
-          <QuestionOptionGroup
+          <QuestionOptions
             type={question.type}
             options={options}
             setOptions={setOptions}
