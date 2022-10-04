@@ -11,7 +11,7 @@ function QuestionContent({ seq, text, status, image, children }) {
           <h3 className="text-lg font-medium leading-6 text-gray-900">{`질문 ${seq}`}</h3>
           {!isEmpty(status) ? <Status value={status} /> : null}
         </div>
-        <p className="mt-1 whitespace-pre-line text-sm text-gray-600">{text}</p>
+        <p className="mt-1 whitespace-pre-wrap text-sm text-gray-600">{text}</p>
         <Image src={image} />
         {children}
       </div>
