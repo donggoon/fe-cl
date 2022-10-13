@@ -4,7 +4,7 @@ import { getOptionStyle, isEmpty } from '../../../functions/commonUtil';
 import CheckIcon from '../../atoms/common/icons/CheckIcon';
 import Status from '../../atoms/common/Status';
 
-function QuestionOption({ type, option, onChange }) {
+function QuestionOption({ type, option, handleChange }) {
   const [checked, setChecked] = useState(option.checked);
   const className = `group pointer-events-auto w-full cursor-pointer whitespace-pre-wrap rounded-lg bg-white p-4 text-[0.8125rem] leading-5 shadow-xl shadow-black/5 ${getOptionStyle(
     checked,
@@ -22,7 +22,7 @@ function QuestionOption({ type, option, onChange }) {
     }
     setChecked(!checked);
     if (type === 'S' && !checked) {
-      onChange(option.id);
+      handleChange(option.id);
     } else if (type === 'S' && checked) {
       setChecked(checked);
     }
