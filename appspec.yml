@@ -1,0 +1,19 @@
+version: 0.0
+os: linux
+
+files:
+  - source:  /build
+    destination: /home/ubuntu/web
+    overwrite: yes
+
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+
+hooks:
+  AfterInstall:
+    - location: script/deploy.sh
+      timeout: 60
+      runas: ubuntu
